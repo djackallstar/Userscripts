@@ -60,3 +60,23 @@ if(/^http:\/\/bbs\.bbs-tw\.com\//.test(href))
         for(var lnks=doc.getElementsByTagName('A'), i=lnks.length-1; i>=0; i--) { lnks[i].target = '_blank' }
     }
 }
+
+/* This script is meant to be used with the following ABP filters.
+||bbs-tw.com/link/top.htm
+||bbs.bbs-tw.com/javascript/all.js
+bbs-tw.com##TABLE[ondragstart="window.event.returnValue=false"]
+bbs-tw.com##TR>TD.AT
+bbs-tw.com##TR>TH.AT
+bbs-tw.com##TH>IFRAME
+bbs.bbs-tw.com###x18x
+bbs.bbs-tw.com###AdImg
+bbs.bbs-tw.com###BbsShowPush
+bbs.bbs-tw.com###AllMenu
+bbs.bbs-tw.com###BbsListMenu
+bbs.bbs-tw.com###BbsShowMenu
+bbs.bbs-tw.com##.PG:first-child
+bbs.bbs-tw.com##DIV>table.AT
+bbs.bbs-tw.com##.addthis_toolbox
+bbs.bbs-tw.com##.noneAnything
+bbs.bbs-tw.com##TH>TABLE>TBODY>TR>TD>TABLE
+*/
