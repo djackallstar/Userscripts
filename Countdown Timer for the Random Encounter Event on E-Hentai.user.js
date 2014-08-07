@@ -10,7 +10,7 @@ var doc = wnd.document
 var loc = location
 var href = loc.href
 
-if(/[\.\/]e-hentai\.org\//.test(href))
+if(/[\.\/]e-hentai\.org\//.test(loc.hostname+'/'))
 {
     var get_cookie = function(k) {
         var cookies = doc.cookie.split('; ')
