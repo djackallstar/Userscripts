@@ -26,7 +26,7 @@ else if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
     addEventListener('DOMContentLoaded', function() { doc.head.appendChild(doc.createElement('script')).src = 'https://github.com/djackallstar/Userscripts/raw/master/Dmzj%20Anime%20Downloader.user.js' }, false)
 }
 else if((/[\.\/]e-hentai\.org\//.test(href)) || (/\/exhentai\.org\//.test(href))) {
-    //doc.head.appendChild(doc.createElement('script')).src = 'https://github.com/djackallstar/Userscripts/raw/master/Countdown%20Timer%20for%20the%20Random%20Encounter%20Event%20on%20E-Hentai.user.js'
+    doc.head.appendChild(doc.createElement('script')).src = 'https://github.com/djackallstar/Userscripts/raw/master/Countdown%20Timer%20for%20the%20Random%20Encounter%20Event%20on%20E-Hentai.user.js'
     if(/^http:\/\/((g\.)|(ex))/.test(href)) {
         var e = doc.getElementsByClassName('itg')[0]
         if(e) { for(var lnks=e.querySelectorAll('a'), i=lnks.length-1; i>=0; i--) { lnks[i].target = '_blank' } }
