@@ -16,7 +16,7 @@ if(/(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/'))
         var cookies = doc.cookie.split('; ')
         for(var i=cookies.length-1; i>=0; i--) { if(new RegExp(k+'=').test(cookies[i])) { return cookies[i].substring(k.length+1) } }
     }
-    var set_cookie = function(k, v) { doc.cookie = k + '=' + v + '; expires=Fri, 31 Dec 9999 23:59:59 GMT; domain=.e-hentai.org'; path=/; }
+    var set_cookie = function(k, v) { doc.cookie = k + '=' + v + '; expires=Fri, 31 Dec 9999 23:59:59 GMT; domain=.e-hentai.org; path=/;' }
 
     if(isNaN(get_cookie('event'))) { alert('The "event" cookie does not exist or is invalid.'); throw 'exit' }
     if(isNaN(get_cookie('re_cnt'))) { set_cookie('re_cnt', 0) }
