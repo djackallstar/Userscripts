@@ -18,6 +18,7 @@ if(/^http:\/\/www\.tetrisfriends\.com\//.test(href))
         if(doc.readyState == 'complete') { goto_sprint_leaderboard() } else { addEventListener('load', goto_sprint_leaderboard, false) }
         throw 'exit'
     }
+    if((typeof remove_ads != 'undefined') && (!remove_ads)) { throw 'exit' }
     if(!/\/game\.php\b/.test(href)) { throw 'exit' }
     wnd.stop()
     if(/Live\/game\.php$/.test(href)) { wnd.stop(); loc.href = href + '?das=117&ar=17&ihs=true&irs=true'; throw 'exit' }
