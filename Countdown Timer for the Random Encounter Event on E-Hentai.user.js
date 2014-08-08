@@ -12,7 +12,6 @@ var href = loc.href
 
 if(/(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/'))
 {
-    
     var get_cookie = function(k) {
         var cookies = doc.cookie.split('; ')
         for(var i=cookies.length-1; i>=0; i--) { if(new RegExp(k+'=').test(cookies[i])) { return cookies[i].substring(k.length+1) } }
