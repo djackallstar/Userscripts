@@ -2,7 +2,6 @@
 // @name            AutoPager for E-Hentai
 // @description     Provides an AutoPager-like function for g.E-Hentai.org.
 // @grant           GM_xmlhttpRequest
-// @grant           unsafeWindow
 // @include         http://g.e-hentai.org/*
 // ==/UserScript==
 
