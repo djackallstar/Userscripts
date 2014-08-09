@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name           Hard Drop Forum Tweaks
 // @description    Some tweaks on the Hard Drop Tetris forums.
+// @grant          GM_xmlhttpRequest
 // @include        http://harddrop.com/*
 // ==/UserScript==
 
