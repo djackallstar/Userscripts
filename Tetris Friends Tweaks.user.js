@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name           Tetris Friends Tweaks
 // @description    Some tweaks on TetrisFriends.com.
+// @grant          unsafeWindow
 // @include        http://www.tetrisfriends.com/*
 // ==/UserScript==
 
