@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name           TwComic Autoload
 // @description    Autoload all images on one page when reading manga on www.twcomic.com.
+// @grant          unsafeWindow
 // @include        http://www.twcomic.com/vols/*
 // ==/UserScript==
 
