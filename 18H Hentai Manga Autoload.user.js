@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name           18H Hentai Manga Autoload
 // @description    Autoload hentai manga and CG images on one page on 18h.mm-cg.com.
+// @grant          unsafeWindow
 // @include        http://*.servik.com/*
 // @include        http://18h.mm-cg.com/*
 // ==/UserScript==
