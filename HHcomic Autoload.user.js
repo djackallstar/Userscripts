@@ -1,6 +1,8 @@
 // ==UserScript==
 // @name           HHcomic Autoload
 // @description    Autoload all images on one page when reading manga on HHcomic.com.
+// @grant          GM_xmlhttpRequest
+// @grant          unsafeWindow
 // @include        http://paga.hhcomic.net/*/*
 // @include        http://paga.vs20.com/*/*
 // ==/UserScript==
