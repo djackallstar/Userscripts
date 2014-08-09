@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name           jkwon23 Saver
 // @description    Ask jkwon23 to sleep when he is sitting up.
+// @grant          GM_xmlhttpRequest
 // @include        http://harddrop.com/file/shout/shout.php
 // ==/UserScript==
 
