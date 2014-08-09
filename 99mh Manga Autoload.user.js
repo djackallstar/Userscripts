@@ -1,6 +1,9 @@
 // ==UserScript==
 // @name           99mh Manga Autoload
 // @description    Autoload all images on one page when reading manga on 99mh.com and similar sites.
+// @grant          GM_getValue
+// @grant          GM_setValue
+// @grant          unsafeWindow
 // @include        /^http://99mh\.com/comic/[0-9]+/[0-9]+//
 // ==/UserScript==
 
