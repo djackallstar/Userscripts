@@ -14,29 +14,73 @@ if(/(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/'))
 {
     var get_cookie = function(k) {
         var cookies = doc.cookie.split('; ')
-        for(var i=cookies.length-1; i>=0; i--) { if(new RegExp(k+'=').test(cookies[i])) { return cookies[i].substring(k.length+1) } }
+        for(var i=cookies.length-1; i>=0; i--) { if(new RegExp(k+'=').test(cookies[i])) { return unescape(cookies[i].substring(k.length+1)) } }
     }
-    var set_cookie = function(k, v) { doc.cookie = k + '=' + v + '; expires=Fri, 31 Dec 9999 23:59:59 GMT; domain=.e-hentai.org; path=/;' }
+    var set_cookie = function(k, v) { doc.cookie = k + '=' + escape(v) + '; expires=Fri, 31 Dec 9999 23:59:59 GMT; domain=.e-hentai.org; path=/;' }
 
-    if(isNaN(get_cookie('event'))) { alert('The "event" cookie does not exist or is invalid.'); throw 'exit' }
+    if(isNaN(get_cookie('event'))) { console.log('The "event" cookie does not exist or is invalid.'); throw 'exit' }
     if(isNaN(get_cookie('re_cnt'))) { set_cookie('re_cnt', 0) }
+    if(!get_cookie('re_lst')) { set_cookie('re_lst', '[]') }
 
     var timer_box = doc.createElement('DIV')
     timer_box.id = 'countdown_timer'
     timer_box.onclick = function() { if(/\bReady\b/i.test(this.textContent)) { wnd.open('http://e-hentai.org/', href=='http://e-hentai.org/'?'_self':'_blank') } }
 
+    var toggle_re_lst = function() {
+        //alert(get_cookie('re_lst'))
+        var re_lst_box = doc.getElementById('re_lst_box')
+        if(re_lst_box) { re_lst_box.parentNode.removeChild(re_lst_box); return }
+        re_lst_box = doc.createElement('DIV')
+        re_lst_box.id = 're_lst_box'
+        re_lst_box.style.cssText = 'top:15px; right:0px; position:fixed; z-index:2147483647; background:rgba(0,255,0,0.2); color:#ff0000;'
+        re_lst_box.innerHTML = '[List of RE Events Occurred Today]<BR>'
+
+        var decode_hv_b64 = function(hv_b64) {
+            var e = hv_b64
+            var d = atob(e)
+            var m = /([^-]+?)-([^-]+?)-([^-]+)/.exec(d)
+            if(m == null) { return }
+            var uid = m[1]
+            var epoch = m[2]
+            var hash = m[3]
+            var da = new Date()
+            da.setTime(parseInt(epoch)*1000)
+            da = da.toLocaleTimeString()
+            var a = doc.createElement('A')
+            a.href = 'http://hentaiverse.org/?s=Battle&ss=ba&encounter=' + e
+            a.target = '_blank'
+            a.text = da
+            a.style.cssText = 'color:#ff0000; text-decoration:underline;'
+            return a
+        }
+        var re_lst = JSON.parse(get_cookie('re_lst'))
+        for(var i=0, len=re_lst.length; i<len; i++) {
+            var a = decode_hv_b64(re_lst[i])
+            if(i != 0) { re_lst_box.appendChild(doc.createElement('BR')) }
+            re_lst_box.appendChild(a)
+        }
+        doc.body.appendChild(re_lst_box)
+    }
+    addEventListener('keydown', function(evt) { if((evt.target.tagName!='INPUT') && (evt.target.tagName!='TEXTAREA') && (evt.keyCode == 76)) { toggle_re_lst() } }, false)
+
     if(/\/e-hentai\./.test(href)) {
         timer_box.style.color = '#ff0000'
         doc.getElementById('newshead').appendChild(timer_box)
     } else {
-        timer_box.style.cssText = 'top:0; right:0; position:fixed; z-index:2147483647; background:rgba(0,255,0,0.2); color:#ff0000;'
+        timer_box.style.cssText = 'line-height:15px; top:0px; right:0px; position:fixed; z-index:2147483647; background:rgba(0,255,0,0.2); color:#ff0000;'
         doc.body.appendChild(timer_box)
     }
 
     var update_timer = function() {
+        if(href == 'http://e-hentai.org/') {
+            var da = new Date()
+            if((da.getUTCHours()==0) && (da.getUTCMinutes()==0) && (da.getUTCSeconds()<=3)) { setTimeout(function() {loc.reload()}, 3) }
+        }
         var now = Math.floor(new Date().getTime()/1000)
         var diff = parseInt(get_cookie('event')) + 1800 - now
-        if(diff <= 0) { timer_box.textContent = 'Ready! re_cnt=' + get_cookie('re_cnt')
+        if(diff <= 0) {
+            timer_box.textContent = 'Ready! re_cnt=' + get_cookie('re_cnt')
+            if(href == 'http://e-hentai.org/') { loc.reload() }
         } else {
             var mm = Math.floor(diff / 60) + ''
             mm = (mm.length >= 2 ? mm : '0' + mm)
@@ -46,19 +90,34 @@ if(/(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/'))
         }
         setTimeout(update_timer, 1000)
     }
-    //addEventListener('DOMContentLoaded', update_timer, false)
     update_timer()
 
     var eventpane = doc.getElementById('eventpane')
-    if(eventpane) {
-        var hv_lnk = eventpane.querySelector('a[onclick*="http://hentaiverse.org/"]')
+    if(eventpane == null) { throw 'exit' }
+    var re_evt = eventpane.querySelector('a[onclick*="http://hentaiverse.org/"]')
+    if(re_evt) {
+        var hv_lnk = /.*window\.open\(['"]?([^'"]+)['"]?/.exec(re_evt.onclick.toString().split('\n').join(''))
         if(hv_lnk) {
-            hv_lnk.addEventListener('click', function() {
-                eventpane.style.display = 'block'
-                if(hv_lnk.text != 'HentaiVerse') { set_cookie('re_cnt', parseInt(get_cookie('re_cnt'))+1) }
-                hv_lnk.text = 'HentaiVerse'
-            }, false)
+            hv_lnk = hv_lnk[1]
+            hv_b64 = hv_lnk.replace(/.+?&encounter=([^&]*).*/, '$1') // the base64 encoded part
+            var re_lst = JSON.parse(get_cookie('re_lst'))
+            if(re_lst.length == 0) { re_lst = [] }
+            if(re_lst.indexOf(hv_b64) == -1) { re_lst.push(hv_b64) }
+            re_lst = JSON.stringify(re_lst, null, ' ')
+            set_cookie('re_lst', re_lst)
         }
-        else if(/\bdawn\b/i.test(eventpane.textContent)) { set_cookie('re_cnt', 0) }
+        else {
+            console.log('Error: There is a random encounter event but the HentaiVerse link cannot be found.')
+            throw 'exit'
+        }
+        re_evt.addEventListener('click', function() {
+            eventpane.style.display = 'block'
+            if(re_evt.text != 'HentaiVerse') { set_cookie('re_cnt', parseInt(get_cookie('re_cnt'))+1) }
+            re_evt.text = 'HentaiVerse'
+        }, false)
+    }
+    else if(/\bdawn\b/i.test(eventpane.textContent)) {
+        set_cookie('re_cnt', 0)
+        set_cookie('re_lst', '[]')
     }
 }
