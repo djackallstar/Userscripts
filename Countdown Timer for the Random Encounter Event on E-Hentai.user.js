@@ -74,7 +74,7 @@ if(/(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/'))
     var update_timer = function() {
         if(href == 'http://e-hentai.org/') {
             var da = new Date()
-            if((da.getUTCHours()==0) && (da.getUTCMinutes()==0) && (da.getUTCSeconds()<=3)) { setTimeout(function() {loc.reload()}, 3) }
+            if((da.getUTCHours()==0) && (da.getUTCMinutes()==0) && (da.getUTCSeconds()<=3)) { setTimeout(function() {loc.reload()}, 3000) }
         }
         var now = Math.floor(new Date().getTime()/1000)
         var diff = parseInt(get_cookie('event')) + 1800 - now
