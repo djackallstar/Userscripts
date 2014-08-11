@@ -3,6 +3,7 @@
 // @description     Provides an AutoPager-like function for g.E-Hentai.org.
 // @grant           GM_xmlhttpRequest
 // @include         http://g.e-hentai.org/*
+// @include         http://exhentai.org/*
 // ==/UserScript==
 
 var wnd = window
@@ -10,7 +11,12 @@ var doc = wnd.document
 var loc = location
 var href = loc.href
 
-if(/^http:\/\/g\.e-hentai\.org\//.test(href))
+var api_url = ''
+if(/^http:\/\/g\.e-hentai\.org\//.test(href)) { api_url = 'http://g.e-hentai.org/api.php' }
+else if(/^http:\/\/exhentai\.org\//.test(href)) { api_url = 'http://exhentai.org/api.php' }
+if(!api_url) { throw 'exit' }
+
+if((/^http:\/\/g\.e-hentai\.org\//.test(href)) || (/^http:\/\/exhentai\.org\//.test(href)))
 {
     if(!/\/[gs]\//.test(href)) { throw 'exit' }
 
@@ -31,7 +37,7 @@ if(/^http:\/\/g\.e-hentai\.org\//.test(href))
         {
             var gtoken = GM_xmlhttpRequest({
                 method: 'POST',
-                url: 'http://g.e-hentai.org/api.php',
+                url: api_url,
                 data: JSON.stringify({'method':'gtoken', 'pagelist':[[gid, imgkey, page]]}),
                 synchronous: true
             })
@@ -39,7 +45,7 @@ if(/^http:\/\/g\.e-hentai\.org\//.test(href))
         else
         {
             var gtoken = new XMLHttpRequest()
-            gtoken.open('POST', 'http://g.e-hentai.org/api.php', false)
+            gtoken.open('POST', api_url, false)
             gtoken.send(JSON.stringify({'method':'gtoken', 'pagelist':[[gid, imgkey, page]]}))
         }
         gtoken = JSON.parse(gtoken.responseText)['tokenlist'][0]['token']
@@ -51,7 +57,7 @@ if(/^http:\/\/g\.e-hentai\.org\//.test(href))
     {
         filecount = GM_xmlhttpRequest({
             method: 'POST',
-            url: 'http://g.e-hentai.org/api.php',
+            url: api_url,
             data: JSON.stringify({'method':'gdata', 'gidlist':[[gid, gtoken]]}),
             synchronous: true
         })
@@ -59,7 +65,7 @@ if(/^http:\/\/g\.e-hentai\.org\//.test(href))
     else
     {
         filecount = new XMLHttpRequest()
-        filecount.open('POST', 'http://g.e-hentai.org/api.php', false)
+        filecount.open('POST', api_url, false)
         filecount.send(JSON.stringify({'method':'gdata', 'gidlist':[[gid, gtoken]]}))
     }
     filecount = parseInt(JSON.parse(filecount.responseText)['gmetadata'][0]['filecount'])
@@ -111,7 +117,7 @@ if(/^http:\/\/g\.e-hentai\.org\//.test(href))
         {
             GM_xmlhttpRequest({
                 method: 'POST',
-                url: 'http://g.e-hentai.org/api.php',
+                url: api_url,
                 data: JSON.stringify({'method':'showpage', 'gid':gid, 'page':page, 'imgkey':imgkey, 'showkey':showkey}),
                 onload: function(response)
                 {
@@ -167,7 +173,7 @@ if(/^http:\/\/g\.e-hentai\.org\//.test(href))
                     setTimeout(append_img, 2000)
                 }
             }
-            xhr.open('POST', 'http://g.e-hentai.org/api.php', true)
+            xhr.open('POST', api_url, true)
             xhr.send(JSON.stringify({'method':'showpage', 'gid':gid, 'page':page, 'imgkey':imgkey, 'showkey':showkey}))
         }
     }
