@@ -80,7 +80,11 @@ if(/(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/'))
         var diff = parseInt(get_cookie('event')) + 1800 - now
         if(diff <= 0) {
             timer_box.textContent = 'Ready! re_cnt=' + get_cookie('re_cnt')
-            if(href == 'http://e-hentai.org/') { loc.reload() }
+            if(href == 'http://e-hentai.org/') {
+                if(/\bfailover\b/i.test(doc.documentElement.innerHTML)) { setTimeout(function() {loc.reload()}, 10000) }
+                else { loc.reload() }
+                return
+            }
         } else {
             var mm = Math.floor(diff / 60) + ''
             mm = (mm.length >= 2 ? mm : '0' + mm)
