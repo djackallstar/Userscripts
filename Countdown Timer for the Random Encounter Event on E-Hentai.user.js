@@ -49,7 +49,7 @@ if(/(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/'))
             var a = doc.createElement('A')
             a.href = 'http://hentaiverse.org/?s=Battle&ss=ba&encounter=' + e
             a.target = '_blank'
-            a.text = i + '. ' + da
+            a.text = (i+1) + '. ' + da
             a.style.cssText = 'color:#ff0000; text-decoration:underline;'
             return a
         }
