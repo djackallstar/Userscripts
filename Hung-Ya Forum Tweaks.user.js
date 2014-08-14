@@ -34,8 +34,7 @@ if(/^http:\/\/bbs\.bbs-tw\.com\//.test(href))
 
         // Reload broken images
         var rbi = function() {
-            var is_img_ok = function(img)
-            {
+            var is_img_ok = function(img) {
                 if(img.readyState!='complete') { return false }
                 if(('naturalHeight' in img)&&(img.naturalHeight+img.naturalWidth==0)) { return false }
                 if(img.width+img.height==0) { return false }
