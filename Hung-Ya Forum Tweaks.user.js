@@ -11,8 +11,7 @@ var href = loc.href
 
 if(/^http:\/\/bbs\.bbs-tw\.com\//.test(href))
 {
-    if(/\/postshow\.pl\?/.test(href))
-    {
+    if(/\/postshow\.pl\?/.test(href)) {
         // Auto redirection upon failure
         if( (!doc.getElementById("BbsShow")) || (!doc.getElementById("BbsShowMenu")) ) { loc.href += "&_=" + +(new Date); throw 'exit' }
 
@@ -52,9 +51,16 @@ if(/^http:\/\/bbs\.bbs-tw\.com\//.test(href))
         }
         if(doc.readyState == 'interactive') { rbi() } else { addEventListener("DOMContentLoaded", rbi, false) }
 
-        // Remove iframes
-        var no_frm = function() { for(var frms = doc.getElementsByTagName('IFRAME'), i=frms.length-1; i>=0; i--) { frms[i].parentNode.removeChild(frms[i]) } }
-        if(doc.readyState == 'interactive') { no_frm() } else { addEventListener('load', no_frm, false) }
+        // Remove iframes, embeds and objects
+        var del_tags = function(t) {
+            for(var e = doc.getElementsByTagName(t), i=e.length-1; i>=0; i--) { e[i].parentNode.removeChild(e[i]) }
+        }        
+        var no_annoyances = function() {
+            del_tags('IFRAME')
+            del_tags('EMBED')
+            del_tags('OBJECT')
+        }
+        if(doc.readyState == 'interactive') { no_annoyances() } else { addEventListener('load', no_annoyances, false) }
     }
     else if(/\/postlist\.pl\?/.test(href)) {
         for(var lnks=doc.getElementsByTagName('A'), i=lnks.length-1; i>=0; i--) { lnks[i].target = '_blank' }
