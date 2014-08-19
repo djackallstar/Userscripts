@@ -35,22 +35,22 @@ if(/(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/'))
         re_lst_box.style.cssText = 'top:15px; right:0px; position:fixed; z-index:2147483647; background:rgba(0,255,0,0.2); color:#ff0000;'
         re_lst_box.innerHTML = '[List of RE Events Occurred Today]<BR>'
 
-        var decode_hv_b64 = function(hv_b64) {
-            var e = hv_b64
+        var decode_hv_b64 = function(e) {
+            var a = doc.createElement('A')
+            a.href = 'http://hentaiverse.org/?s=Battle&ss=ba&encounter=' + e
+            a.target = '_blank'
+            a.text = (i+1) + '. '
+            a.style.cssText = 'color:#ff0000'
             var d = atob(e)
             var m = /([^-]+?)-([^-]+?)-([^-]+)/.exec(d)
-            if(m == null) { return }
+            if(m == null) { return a }
             var uid = m[1]
             var epoch = m[2]
             var hash = m[3]
             var da = new Date()
             da.setTime(parseInt(epoch)*1000)
             da = da.toLocaleTimeString()
-            var a = doc.createElement('A')
-            a.href = 'http://hentaiverse.org/?s=Battle&ss=ba&encounter=' + e
-            a.target = '_blank'
-            a.text = (i+1) + '. ' + da
-            a.style.cssText = 'color:#ff0000; text-decoration:underline;'
+            a.text = a.text + da
             return a
         }
         var re_lst = JSON.parse(get_cookie('re_lst'))
