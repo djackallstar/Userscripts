@@ -10,10 +10,9 @@ var doc = wnd.document
 var loc = location
 var href = loc.href
 
-if(/\/palette\.html?\b/.test(href)) { return }
-
 if(/(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/'))
 {
+    if(/\/palette\.html?\b/.test(href)) { throw 'exit' }
     var get_cookie = function(k) {
         var cookies = doc.cookie.split('; ')
         for(var i=cookies.length-1; i>=0; i--) { if(new RegExp(k+'=').test(cookies[i])) { return unescape(cookies[i].substring(k.length+1)) } }
