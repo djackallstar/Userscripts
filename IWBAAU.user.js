@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name            I Wanna Be An Active User
-// @description     Automatically post the text content from Dawn event to the popular thread
+// @description     Automatically posts the text content from Dawn event to the popular thread
 // @updateURL       about:blank
 // @include         http://e-hentai.org/
 // @include         http://forums.e-hentai.org/index.php?showtopic=12100&dawn_msg=*
