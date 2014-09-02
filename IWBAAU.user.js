@@ -7,7 +7,7 @@
 // ==/UserScript==
 
 /*** Settings ***/
-var auto_submit = false // change this to 'true' if you want the script to auto-submit the text content.
+var auto_submit = true // change this to 'false' if you don't want the script to auto-submit for you
 /***          ***/
 
 var wnd = window
