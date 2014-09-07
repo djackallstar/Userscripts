@@ -99,11 +99,14 @@ if(/(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/'))
 
     var eventpane = doc.getElementById('eventpane')
     if(eventpane == null) { throw 'exit' }
-    var re_evt = eventpane.querySelector('a[onclick*="http://hentaiverse.org/"]')
+    //var re_evt = eventpane.querySelector('a[onclick*="http://hentaiverse.org/"]')
+    var re_evt = eventpane.getElementsByTagName('div')[1].getElementsByTagName('a')[0]
     if(re_evt) {
-        var hv_lnk = /.*window\.open\(['"]?([^'"]+)['"]?/.exec(re_evt.onclick.toString().split('\n').join(''))
+        var hv_lnk = ''
+        if(/^http:\/\//.test(re_evt.href)) { hv_lnk = re_evt.href }
+        else { hv_lnk = /.*window\.open\(['"]?([^'"]+)['"]?/.exec(re_evt.onclick.toString().split('\n').join('')) }
         if(hv_lnk) {
-            hv_lnk = hv_lnk[1]
+            if(typeof hv_lnk == 'object') { hv_lnk = hv_lnk[1] }
             hv_b64 = hv_lnk.replace(/.+?&encounter=([^&]*).*/, '$1') // the base64 encoded part
             var re_lst = JSON.parse(get_cookie('re_lst'))
             if(re_lst.length == 0) { re_lst = [] }
