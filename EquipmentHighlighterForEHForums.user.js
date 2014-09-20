@@ -56,6 +56,10 @@ if(typeof p_set == 'undefined')
         ],
     ]
 }
+else
+{
+    p_set = JSON.parse(p_set)
+}
 
 /*** End of Settings ***/
 
