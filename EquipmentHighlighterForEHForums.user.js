@@ -68,7 +68,7 @@ for(var i=posts.length-1; i>=0; i--) {
             for(var m=p_set[k][0].length-1; m>=0; m--) {
                 if(p_set[k][0][m].test(lnks[j].text)) {
                     highlighted = true
-                    lnks[j].text = '[Highlight] ' + lnks[j].text
+                    //lnks[j].text = '[Highlight] ' + lnks[j].text
                     lnks[j].style.color = 'white'
                     lnks[j].style.backgroundColor = p_set[k][1]
                     break
