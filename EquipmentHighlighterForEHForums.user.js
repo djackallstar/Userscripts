@@ -17,7 +17,7 @@ if(typeof p_set == 'undefined')
     [
         [
             [   // Rapier
-                /(Peerless|Leg|Mag)(\S+)?(Ethereal|Hallowed|Demonic|Tempestuous) +Rapier.+(Slaughter)/i, // Mag+ good-prefixed rapier of slaughter
+                /(Peerless|Leg|Mag)(\S+)? +(Ethereal|Hallowed|Demonic|Tempestuous) +Rapier.+(Slaughter)/i, // Mag+ good-prefixed rapier of slaughter
                 // Force Shield
                 /(Peerless|Leg)(\S+)?( +\S+)? +Force +Shield/i, // Leg+ force shield
                 /(Mag)(\S+)? +Force +Shield/i, // Mag non-prefixed force shield
