@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name            Equipment Highlight for E-Hentai Forums
+// @name            Equipment Highlighter for E-Hentai Forums
 // @description     Highlights Equipment Names with Colors in the WTS/WTB Forums
 // @include         http://forums.e-hentai.org/index.php?*showtopic=*
 // ==/UserScript==
