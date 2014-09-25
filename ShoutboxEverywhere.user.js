@@ -7,7 +7,7 @@
 /*** Settings ***/
 
 var display_sb_on_page_load = false // whether to display the shoutbox upon opening a page
-var shoutbox_width = Math.floor(window.innerWidth/3) // width in pixel
+var shoutbox_width = Math.floor(window.innerWidth/5) // width in pixel
 var shoutbox_height = window.innerHeight // height in pixel
 var hotkey = 76 // use "http://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes" to find the keycode you want. 76 == L
 
