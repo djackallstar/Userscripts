@@ -9,7 +9,7 @@
 var display_sb_on_page_load = false // whether to display the shoutbox upon opening a page
 var shoutbox_width = 400 // width in pixel
 var shoutbox_height = window.innerHeight // height in pixel
-var hotkey = 76 // use http://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes to find the keycode you want. 76 == L
+var hotkey = 76 // use "http://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes" to find the keycode you want. 76 == L
 
 /*** End of Settings ***/
 
@@ -41,4 +41,4 @@ var toggle_sb = function() {
     if(sb_div.style.visibility != 'hidden') { sb_div.style.visibility = 'hidden'; return }
     sb_div.style.visibility = 'visible'
 }
-addEventListener('keydown', function(evt) { if((evt.target.tagName!='INPUT') && (evt.target.tagName!='TEXTAREA') && (evt.keycode == hotkey)) { toggle_sb() } }, false)
+addEventListener('keydown', function(evt) { if((evt.target.tagName!='INPUT') && (evt.target.tagName!='TEXTAREA') && (evt.keyCode == hotkey)) { toggle_sb() } }, false)
