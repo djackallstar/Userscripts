@@ -17,7 +17,7 @@ var doc = wnd.document
 var loc = location
 var href = loc.href
 
-if(/\/shout.php\b/.test(href) || /harddrop\.com\/?$/.test(href)) { return }
+if(/\/shout.php\b/.test(href) || /harddrop\.com\/?$/.test(href)) { throw 'exit' }
 
 var sb_frm = doc.createElement('IFRAME')
 sb_frm.id = 'sb_frm'
