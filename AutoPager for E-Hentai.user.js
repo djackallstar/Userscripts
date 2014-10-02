@@ -74,7 +74,8 @@ if((/^http:\/\/g\.e-hentai\.org\//.test(href)) || (/^http:\/\/exhentai\.org\//.t
     if(/\/g\//.test(href))
     {
         var page = imgkey = ''
-        page = parseInt(doc.querySelector('#gdt a').href.replace(/^.*-([0-9]+)/, '$1')), page_url = ''
+        //page = parseInt(doc.querySelector('#gdt a').href.replace(/^.*-([0-9]+)/, '$1')), page_url = ''
+        page = doc.getElementsByClassName('ip')[0].textContent.match(/\d+/)[0], page_url = ''
         lnks = doc.getElementsByTagName('A')
         for(var i=lnks.length-1; i>=0; i--)
         {
