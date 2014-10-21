@@ -21,9 +21,23 @@ var init_timer = function(timer, thread_url) {
     var xhr = new XMLHttpRequest()
     xhr.onreadystatechange = function() {
         if(xhr.readyState == 4 && xhr.status == 200) {
-            var m = /(http:\/\/e-hentai-countdown\.darknessfall\.com\/[^'"]+\?)([^'"]+)/.exec(xhr.responseText)
-            if(!m) { return }
-            timer_url = m[1] + encodeURI(unescape(m[2].replace(/&?auctionname=[^'"]*?&amp;/, '&').replace(/&amp;/g, '&').replace(/&expire=[^&]*/, '')))
+            var container = doc.implementation.createHTMLDocument().documentElement
+            container.innerHTML = xhr.responseText
+            var timer_img = container.querySelector('IMG.linked-image[src^="http://e-hentai-countdown.darknessfall.com/"]')
+            var yy = timer_img.src.match(/year=(\d+)/)[1]
+            var mm = timer_img.src.match(/month=(\d+)/)[1]
+            var dd = timer_img.src.match(/day=(\d+)/)[1]
+            var hh = timer_img.src.match(/hour=(\d+)/)[1]
+            var mi = timer_img.src.match(/minute=(\d+)/)[1]
+            var ss = timer_img.src.match(/second=(\d+)/)[1]
+            timer_url = 'http://e-hentai-countdown.darknessfall.com//EH-Cdwn.png?'
+            timer_url += '&year=' + yy
+            timer_url += '&month=' + mm
+            timer_url += '&day=' + dd
+            timer_url += '&hour=' + hh
+            timer_url += '&minute=' + mi
+            timer_url += '&second=' + ss
+            console.log(timer_url)
             timer.src = timer_url
         }
     }
