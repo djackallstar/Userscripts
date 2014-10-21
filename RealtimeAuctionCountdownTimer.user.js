@@ -37,7 +37,6 @@ var init_timer = function(timer, thread_url) {
             timer_url += '&hour=' + hh
             timer_url += '&minute=' + mi
             timer_url += '&second=' + ss
-            console.log(timer_url)
             timer.src = timer_url
         }
     }
