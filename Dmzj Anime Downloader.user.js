@@ -100,7 +100,8 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href))
                     }
                     else if(site_name == 'sohu')
                     {
-                        vid_url = 'http://share.vrs.sohu.com/my/v.swf&id=' + vid
+                        //vid_url = 'http://share.vrs.sohu.com/my/v.swf&id=' + vid
+                        vid_url = 'http://share.vrs.sohu.com/' + vid + '/v.swf'
                         parse_service = 'flvxz'
                     }
                     else if(site_name == 'cntv')
