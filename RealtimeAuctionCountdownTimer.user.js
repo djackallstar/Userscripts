@@ -24,12 +24,14 @@ var init_timer = function(timer, thread_url) {
             var container = doc.implementation.createHTMLDocument().documentElement
             container.innerHTML = xhr.responseText
             var timer_img = container.querySelector('IMG.linked-image[src^="http://e-hentai-countdown.darknessfall.com/"]')
-            var yy = timer_img.src.match(/year=(\d+)/)[1]
-            var mm = timer_img.src.match(/month=(\d+)/)[1]
-            var dd = timer_img.src.match(/day=(\d+)/)[1]
-            var hh = timer_img.src.match(/hour=(\d+)/)[1]
-            var mi = timer_img.src.match(/minute=(\d+)/)[1]
-            var ss = timer_img.src.match(/second=(\d+)/)[1]
+            var yy = mm = dd = hh = mi = ss = offset = ''
+            try { yy = timer_img.src.match(/year=([-0-9]*)/)[1] } catch(e) {}
+            try { mm = timer_img.src.match(/month=([-0-9]*)/)[1] } catch(e) {}
+            try { dd = timer_img.src.match(/day=([-0-9]*)/)[1] } catch(e) {}
+            try { hh = timer_img.src.match(/hour=([-0-9]*)/)[1] } catch(e) {}
+            try { mi = timer_img.src.match(/minute=([-0-9]*)/)[1] } catch(e) {}
+            try { ss = timer_img.src.match(/second=([-0-9]*)/)[1] } catch(e) {}
+            try { offset = timer_img.src.match(/offset=([-0-9]*)/)[1] } catch(e) {}
             timer_url = 'http://e-hentai-countdown.darknessfall.com//EH-Cdwn.png?'
             timer_url += '&year=' + yy
             timer_url += '&month=' + mm
