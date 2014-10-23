@@ -76,12 +76,16 @@ if(/^http:\/\/harddrop\.com\//.test(href))
 
         // enable the input box
         addEventListener('load', function() {
+            try{
             doc.getElementsByName('ShoutCloud-Msg')[0].disabled = false
             doc.getElementsByName('ShoutCloud-Msg')[0].value = ''
+            } catch(e) {}
         }, false)
 
         // don't clear unsent text when unfocuing the input box
-        doc.getElementsByName('ShoutCloud-Msg')[0].onblur = function() { return }
+        try{
+            doc.getElementsByName('ShoutCloud-Msg')[0].onblur = function() { return }
+        } catch(e) {}
 
         // hide annoying users in the shoutbox
         var hide_users = function()
