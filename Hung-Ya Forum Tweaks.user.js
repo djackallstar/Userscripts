@@ -11,6 +11,7 @@ var href = loc.href
 
 if(/^http:\/\/bbs\.bbs-tw\.com\//.test(href))
 {
+    for(var lnks=doc.getElementsByTagName('A'), i=lnks.length-1; i>=0; i--) { lnks[i].target = '_blank' }
     if(/\/postshow\.pl\?/.test(href)) {
         // Auto redirection upon failure
         if( (!doc.getElementById("BbsShow")) || (!doc.getElementById("BbsShowMenu")) ) { loc.href += "&_=" + +(new Date); throw 'exit' }
@@ -61,9 +62,7 @@ if(/^http:\/\/bbs\.bbs-tw\.com\//.test(href))
         }
         if(doc.readyState == 'interactive') { no_annoyances() } else { addEventListener('load', no_annoyances, false) }
     }
-    else if(/\/postlist\.pl\?/.test(href)) {
-        for(var lnks=doc.getElementsByTagName('A'), i=lnks.length-1; i>=0; i--) { lnks[i].target = '_blank' }
-    }
+    else if(/\/postlist\.pl\?/.test(href)) { }
 }
 
 /* This script is meant to be used with the following ABP filters.
