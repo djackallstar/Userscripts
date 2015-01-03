@@ -53,7 +53,7 @@ if(/^http:\/\/harddrop\.com\//.test(href))
             sbframe.id = 'my_sbframe'
             sbframe.src = 'http://harddrop.com/file/shout/shout.php'
             sbframe.width = 300
-            sbframe.height = 480
+            sbframe.height = 570
             sbframe.frameBorder = 0
             doc.getElementById('fo_rtopics').appendChild(sbframe)
 
