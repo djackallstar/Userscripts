@@ -70,6 +70,10 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href))
                             vid_url = 'http://www.tudou.com/programs/view/' + vid
                         }
                         parse_service = 'flvxz'
+                        
+                        // For future use:
+                        // http://www.gy456.com/js/player/gy007/ckplayer.swf?f=http://www.gy456.com/js/player/api/api.php?url=132338889_tudou
+                        // http://www.gy456.com/js/player/api/api.php?url=132338889_tudou
                     }
                     else if(site_name == 'weiyun')
                     {
