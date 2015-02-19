@@ -11,6 +11,7 @@ var doc = wnd.document
 var loc = location
 var href = loc.href
 
+if(!/\bp=/.test(href)) { loc.href = href + '?p=0' }
 var api_url = ''
 if(/^http:\/\/g\.e-hentai\.org\//.test(href)) { api_url = 'http://g.e-hentai.org/api.php' }
 else if(/^http:\/\/exhentai\.org\//.test(href)) { api_url = 'http://exhentai.org/api.php' }
