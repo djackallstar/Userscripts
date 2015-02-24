@@ -73,6 +73,10 @@ if(/^http:\/\/harddrop\.com\//.test(href))
     else if(/shout/.test(href)) // in the shoutbox
     {
         if(doc.getElementById('ShoutCloud-Container')==null) { throw 'exit' }
+        
+        // hide images
+        var imgs = doc.querySelectorAll('img')
+        for(var i=imgs.length-1; i>=0; i--) { imgs[i].style.display = 'none' }
 
         // enable the input box
         addEventListener('load', function() {
