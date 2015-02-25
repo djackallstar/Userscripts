@@ -10,6 +10,9 @@ var doc = wnd.document
 var loc = location
 var href = loc.href
 
+var $  = function(e, css) { if(!css) { css=e; e=doc }; return e.querySelector(css) }
+var $$ = function(e, css) { if(!css) { css=e; e=doc }; return e.querySelectorAll(css) }
+
 if(/^http:\/\/harddrop\.com\//.test(href))
 {
     if(typeof users_to_hide == 'undefined')
@@ -111,6 +114,23 @@ if(/^http:\/\/harddrop\.com\//.test(href))
         hide_users()
         addEventListener("DOMNodeInserted", function() { // or DOMSubtreeModified
             hide_users()
+        }, false)
+        
+        // hide chats with only emotes
+        var hide_chats_with_only_emotes = function()
+        {
+            var chats = doc.getElementsByClassName('shout-msg')
+            var len = chats.length
+            for(var i=0; i<len; i++)
+            {
+                if(chats[i].textContent.replace(/.+?:[0-9][0-9]?/, '').replace(/\n/g, '') == '') {
+                    chats[i].style.display = 'none'
+                }
+            }
+        }
+        hide_chats_with_only_emotes()
+        addEventListener("DOMNodeInserted", function() { // or DOMSubtreeModified
+            hide_chats_with_only_emotes()
         }, false)
     }
 }
