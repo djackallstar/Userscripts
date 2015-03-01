@@ -123,7 +123,7 @@ if(/^http:\/\/harddrop\.com\//.test(href))
             var len = chats.length
             for(var i=0; i<len; i++)
             {
-                if(chats[i].textContent.replace(/.+?:[0-9][0-9]?/, '').replace(/\n/g, '') == '') {
+                if(chats[i].textContent.replace(/.+?:[0-9][0-9]?/, '').replace(/[\n\s]/g, '') == '') {
                     chats[i].style.display = 'none'
                 }
             }
