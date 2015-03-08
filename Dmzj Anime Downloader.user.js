@@ -38,7 +38,8 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href))
                 cites[i].addEventListener('click', function(evt)
                 {
                     if(evt.ctrlKey) { evt.preventDefault(); return }
-                    var m = /PlayerBox\.play\(['"]([^'"]*)['"],['"]([^'"]*)['"]/.exec(f)
+                    //var m = /PlayerBox\.play\(['"]([^'"]*)['"],['"]([^'"]*)['"]/.exec(f)
+                    var m = /PlayerBox\.play\(['"]([^'"]*)['"],['"]([^'"]*)['"],['"]([^'"]*)['"]/.exec(f)
                     if(m == null)
                     {
                         alert('Error: Cannot find PlayerBox.play(...).')
@@ -46,6 +47,7 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href))
                     }
                     var site_name = m[1]
                     var vid = m[2]
+                    var uu = m[3]
 
                     // http://donghua.dmzj.com/js/donghua_play.js
                     var vid_url = '', parse_service = ''
@@ -56,7 +58,8 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href))
                     }
                     else if(site_name == 'letvyun')
                     {
-                        vid_url = 'http://yuntv.letv.com/bcloud.swf?uu=d955239f11&vu=' + vid + '&auto_play=1&gpcflag=1&allowFullScreen=true&quality=high&allowScriptAccess=always&type=application/x-shockwave-flash'
+                        //vid_url = 'http://yuntv.letv.com/bcloud.swf?uu=d955239f11&vu=' + vid + '&auto_play=1&gpcflag=1&allowFullScreen=true&quality=high&allowScriptAccess=always&type=application/x-shockwave-flash'
+                        vid_url = 'http://yuntv.letv.com/bcloud.swf?uu=' + uu + '&vu=' + vid + '&auto_play=1&gpcflag=1&allowFullScreen=true&quality=high&allowScriptAccess=always&type=application/x-shockwave-flash';
                         parse_service = 'flvxz'
                     }
                     else if(site_name == 'tudou' || site_name == 'tudou2')
