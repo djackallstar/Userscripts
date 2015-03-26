@@ -34,10 +34,13 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
             (function(i) {
                 var f = '(' + cites[i].onclick.toString() + ')()'
                 var handler = function(evt) {
-                    if(evt.ctrlKey) { evt.preventDefault() }
-                    else if(evt.shiftKey) { evt.preventDefault() }
-                    else if(evt.altKey) { evt.preventDefault() }
-                    else if(evt.metaKey) { evt.preventDefault() }
+                    if(evt.type == 'click') {
+                        if(evt.ctrlKey) { evt.preventDefault() }
+                        else if(evt.shiftKey) { evt.preventDefault() }
+                        else if(evt.altKey) { evt.preventDefault() }
+                        else if(evt.metaKey) { evt.preventDefault() }
+                        else { return }
+                    }
 
                     //var m = /PlayerBox\.play\(['"]([^'"]*)['"],['"]([^'"]*)['"]/.exec(f)
                     var m = /PlayerBox\.play\(['"]([^'"]*)['"],['"]([^'"]*)['"],['"]([^'"]*)['"]/.exec(f)
