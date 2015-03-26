@@ -10,9 +10,12 @@ var doc = wnd.document
 var loc = location
 var href = loc.href
 
+var $  = function(e, css) { if(!css) { css=e; e=doc }; return e.querySelector(css) }
+var $$ = function(e, css) { if(!css) { css=e; e=doc }; return e.querySelectorAll(css) }
+
 if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
     var noimg = function() {
-        var imgs = doc.getElementsByTagName('IMG')
+        var imgs = $$('IMG')
         for(var i=imgs.length-1; i>=0; i--) {
             imgs[i].onclick = function(evt) {
                 evt.preventDefault()
@@ -26,7 +29,7 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
 
     if(!/\/donghua_play\//.test(href)) { throw 'exit' }
     var parse_dmzj = function() {
-        var cites = doc.querySelectorAll('.cite-tools>ul>li>a')
+        var cites = $$('.cite-tools>ul>li>a')
         for(var i=cites.length-1; i>=0; i--) {
             (function(i) {
                 var f = '(' + cites[i].onclick.toString() + ')()'
