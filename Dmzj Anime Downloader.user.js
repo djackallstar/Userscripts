@@ -35,8 +35,9 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
                 var f = '(' + cites[i].onclick.toString() + ')()'
                 var handler = function(evt) {
                     if(evt.ctrlKey) { evt.preventDefault() }
-                    if(evt.shiftKey) { evt.preventDefault() }
-                    if(evt.altKey) { evt.preventDefault() }
+                    else if(evt.shiftKey) { evt.preventDefault() }
+                    else if(evt.altKey) { evt.preventDefault() }
+                    else if(evt.metaKey) { evt.preventDefault() }
 
                     //var m = /PlayerBox\.play\(['"]([^'"]*)['"],['"]([^'"]*)['"]/.exec(f)
                     var m = /PlayerBox\.play\(['"]([^'"]*)['"],['"]([^'"]*)['"],['"]([^'"]*)['"]/.exec(f)
@@ -189,9 +190,10 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
                     }
 
                     var parse_url = ''
-                    if(evt.ctrlKey) { parse_service = 'none' }
-                    if(evt.shiftKey) { parse_service = 'flvxz' }
-                    if(evt.altKey) { parse_service = 'flvcd' }
+                    if(evt.ctrlKey) { }
+                    else if(evt.shiftKey) { parse_service = 'flvxz' }
+                    else if(evt.altKey) { parse_service = 'flvcd' }
+                    else if(evt.altKey) { parse_service = 'none' }
 
                     if(parse_service == 'flvxz') {
                         parse_url = 'http://www.flvxz.com/?url=' + encodeURIComponent(vid_url)
