@@ -211,7 +211,7 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
                     else if(evt.type == 'mouseover') {
                         console.log(vid_url)
                         //if(typeof GM_log != 'undefined') { GM_log(vid_url) }
-                        //alert(vid_url)
+                        if(evt.ctrlKey) { alert(vid_url) }
                     }
                 }
                 cites[i].addEventListener('click', handler, false)
