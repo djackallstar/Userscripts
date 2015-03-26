@@ -10,12 +10,12 @@ var doc = wnd.document
 var loc = location
 var href = loc.href
 
-var $  = function(e, css) { if(!css) { css=e; e=doc }; return e.querySelector(css) }
-var $$ = function(e, css) { if(!css) { css=e; e=doc }; return e.querySelectorAll(css) }
+//var $  = function(e, css) { if(!css) { css=e; e=doc }; return e.querySelector(css) }
+//var $$ = function(e, css) { if(!css) { css=e; e=doc }; return e.querySelectorAll(css) }
 
 if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
     var noimg = function() {
-        var imgs = $$('IMG')
+        var imgs = doc.querySelectorAll('IMG')
         for(var i=imgs.length-1; i>=0; i--) {
             imgs[i].onclick = function(evt) {
                 evt.preventDefault()
