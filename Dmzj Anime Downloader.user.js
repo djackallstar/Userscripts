@@ -192,12 +192,12 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
                         return
                     }
 
-                    var parse_url = ''
                     if(evt.ctrlKey) { }
                     else if(evt.shiftKey) { parse_service = 'flvxz' }
                     else if(evt.altKey) { parse_service = 'flvcd' }
-                    else if(evt.altKey) { parse_service = 'none' }
+                    else if(evt.metaKey) { parse_service = 'none' }
 
+                    var parse_url = ''
                     if(parse_service == 'flvxz') {
                         parse_url = 'http://www.flvxz.com/?url=' + encodeURIComponent(vid_url)
                     }
