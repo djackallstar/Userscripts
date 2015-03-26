@@ -29,7 +29,7 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
 
     if(!/\/donghua_play\//.test(href)) { throw 'exit' }
     var parse_dmzj = function() {
-        var cites = $$('.cite-tools>ul>li>a')
+        var cites = doc.querySelectorAll('.cite-tools>ul>li>a')
         for(var i=cites.length-1; i>=0; i--) {
             (function(i) {
                 var f = '(' + cites[i].onclick.toString() + ')()'
