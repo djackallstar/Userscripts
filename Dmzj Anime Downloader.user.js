@@ -208,14 +208,14 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
                         parse_url = vid_url
                     }
                     if(evt.type == 'click') { wnd.open(parse_url, '_blank') }
-                    else if(evt.type == 'mouseover') {
+                    else if(evt.type == 'mouseout') {
                         console.log(vid_url)
                         //if(typeof GM_log != 'undefined') { GM_log(vid_url) }
                         if(evt.ctrlKey) { alert(vid_url) }
                     }
                 }
                 cites[i].addEventListener('click', handler, false)
-                cites[i].addEventListener('mouseover', handler, false)
+                cites[i].addEventListener('mouseout', handler, false)
             } )(i)
         }
     }
