@@ -65,7 +65,8 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
                     }
                     else if(site_name == 'tudou' || site_name == 'tudou2') {
                         if(/^\d+$/.test(vid)) {
-                            vid_url = 'http://js.tudouui.com/bin/lingtong/PortalPlayer_53.swf?iid=' + vid
+                            //vid_url = 'http://js.tudouui.com/bin/lingtong/PortalPlayer_53.swf?iid=' + vid
+                            vid_url = 'http://tudou.com/v/' + vid
                         }
                         else {
                             vid_url = 'http://www.tudou.com/programs/view/' + vid
