@@ -35,6 +35,12 @@ if(/(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/'))
         re_lst_box.id = 're_lst_box'
         re_lst_box.style.cssText = 'top:15px; right:0px; position:fixed; z-index:2147483647; background:rgba(0,255,0,0.2); color:#ff0000;'
         re_lst_box.innerHTML = '[List of RE Events Occurred Today]<BR>'
+        re_lst_box.onmouseover = function () {
+            this.style.cssText = 'top:15px; right:0px; position:fixed; z-index:2147483647; background:rgba(0,255,0,1); color:#ff0000;'
+        }
+        re_lst_box.onmouseout = function () {
+            this.style.cssText = 'top:15px; right:0px; position:fixed; z-index:2147483647; background:rgba(0,255,0,0.2); color:#ff0000;'
+        }
 
         var decode_hv_b64 = function(e) {
             var a = doc.createElement('A')
