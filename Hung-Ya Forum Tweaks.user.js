@@ -14,7 +14,7 @@ if(/^http:\/\/bbs\.bbs-tw\.com\//.test(href))
     for(var lnks=doc.getElementsByTagName('A'), i=lnks.length-1; i>=0; i--) { lnks[i].target = '_blank' }
     if(/\/postshow\.pl\?/.test(href)) {
         // Auto redirection upon failure
-        if( (!doc.getElementById("BbsShow")) || (!doc.getElementById("BbsShowMenu")) ) { loc.href += "&_=" + +(new Date); throw 'exit' }
+        if( (!doc.getElementById("BbsShow")) || (!doc.getElementById("BbsShowMenu")) ) { loc.assign(loc.href + "&_=" + +(new Date)) }
 
         // Remove scripts
         //var scripts=doc.getElementsByTagName('script')
