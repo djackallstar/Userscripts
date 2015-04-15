@@ -69,9 +69,10 @@ if(/(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/') && !/\/palette
     }
     addEventListener('keydown', function(evt) { if((evt.target.tagName!='INPUT') && (evt.target.tagName!='TEXTAREA') && (evt.keyCode == 76)) { toggle_re_lst() } }, false)
 
-    if(/\/e-hentai\./.test(href)) {
+    var newshead = doc.getElementById('newshead')
+    if(newshead && /\/e-hentai\./.test(href)) {
         timer_box.style.color = '#ff0000'
-        doc.getElementById('newshead').appendChild(timer_box)
+        newshead.appendChild(timer_box)
     } else {
         timer_box.style.cssText = 'line-height:15px; top:0px; right:0px; position:fixed; z-index:2147483647; background:rgba(0,255,0,0.2); color:#ff0000;'
         doc.body.appendChild(timer_box)
