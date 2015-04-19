@@ -61,6 +61,27 @@ if(/^http:\/\/bbs\.bbs-tw\.com\//.test(href))
             del_tags('OBJECT')
         }
         if(doc.readyState == 'interactive') { no_annoyances() } else { addEventListener('load', no_annoyances, false) }
+
+        // Zap CSS
+        for(var i=css=0;css=document.styleSheets[i];i++){
+            css.disabled=true;
+        }
+        var all=document.getElementsByTagName('*');
+        for(var i=(all=document.getElementsByTagName('*')).length;i>0;i--){
+            var e=all[i-1];
+            e.style.cssText='';
+            if(e.nodeName=='STYLE'&&e.parentNode){
+                e.parentNode.removeChild(e);
+            }
+            else{
+                e.style='';
+                e.size='';
+                e.face='';
+                e.color='';
+                e.bgcolor='';
+                e.background='';
+            }
+        }
     }
     else if(/\/postlist\.pl\?/.test(href)) { }
 }
