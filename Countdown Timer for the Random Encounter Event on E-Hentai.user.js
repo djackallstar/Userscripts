@@ -15,11 +15,12 @@ if(/(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/') && !/\/palette
     var get_cookie = function(k) {
         var cookies = doc.cookie.split('; ')
         for(var i=cookies.length-1; i>=0; i--) { if(new RegExp(k+'=').test(cookies[i])) { return unescape(cookies[i].substring(k.length+1)) } }
+        return null
     }
     var set_cookie = function(k, v) { doc.cookie = k + '=' + escape(v) + '; expires=Fri, 31 Dec 9999 23:59:59 GMT; domain=.e-hentai.org; path=/;' }
 
-    if(isNaN(get_cookie('event'))) { console.log('The "event" cookie does not exist or is invalid.'); throw 'exit' }
-    if(isNaN(get_cookie('re_cnt'))) { set_cookie('re_cnt', 0) }
+    if(!get_cookie('event')) { console.log('The "event" cookie does not exist or is invalid.'); throw 'exit' }
+    if(!get_cookie('re_cnt')) { set_cookie('re_cnt', 0) }
     if(!get_cookie('re_lst')) { set_cookie('re_lst', '[]') }
 
     var timer_box = doc.createElement('DIV')
@@ -60,12 +61,14 @@ if(/(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/') && !/\/palette
             return a
         }
         var re_lst = JSON.parse(get_cookie('re_lst'))
-        for(var i=0, len=re_lst.length; i<len; i++) {
-            var a = decode_hv_b64(re_lst[i])
-            if(i != 0) { re_lst_box.appendChild(doc.createElement('BR')) }
-            re_lst_box.appendChild(a)
+        if(re_lst) {
+            for(var i=0, len=re_lst.length; i<len; i++) {
+                var a = decode_hv_b64(re_lst[i])
+                if(i != 0) { re_lst_box.appendChild(doc.createElement('BR')) }
+                re_lst_box.appendChild(a)
+            }
+            doc.body.appendChild(re_lst_box)
         }
-        doc.body.appendChild(re_lst_box)
     }
     addEventListener('keydown', function(evt) { if((evt.target.tagName!='INPUT') && (evt.target.tagName!='TEXTAREA') && (evt.keyCode == 76)) { toggle_re_lst() } }, false)
 
@@ -117,7 +120,7 @@ if(/(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/') && !/\/palette
             if(hv_lnk) {
                 hv_b64 = hv_lnk.replace(/.+?&encounter=([^&]*).*/, '$1') // the base64 encoded part
                 var re_lst = JSON.parse(get_cookie('re_lst'))
-                if(re_lst.length == 0) { re_lst = [] }
+                if((!re_lst) || (re_lst.length == 0)) { re_lst = [] }
                 if(re_lst.indexOf(hv_b64) == -1) { re_lst.push(hv_b64) }
                 re_lst = JSON.stringify(re_lst, null, ' ')
                 set_cookie('re_lst', re_lst)
