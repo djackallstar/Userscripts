@@ -220,6 +220,6 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
                 } )(i)
             }
         }
-        if(doc.readyState == 'interactive') { parse_dmzj() } else { addEventListener('DOMContentLoaded', parse_dmzj, false) }
+        if((doc.readyState == 'interactive') || (doc.readyState == 'complete')) { parse_dmzj() } else { addEventListener('DOMContentLoaded', parse_dmzj, false) }
     }
 }
