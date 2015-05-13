@@ -203,7 +203,7 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
                             parse_url = 'http://www.flvxz.com/?url=' + encodeURIComponent(vid_url)
                         }
                         else if(parse_service == 'flvcd') {
-                            parse_url = 'http://www.flvcd.com/parse.php?kw=' + encodeURIComponent(vid_url)
+                            parse_url = 'http://www.flvcd.com/parse.php?kw=' + encodeURIComponent(vid_url) + '&go=1'
                         }
                         else if(parse_service == 'none') {
                             parse_url = vid_url
