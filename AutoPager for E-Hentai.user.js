@@ -97,6 +97,7 @@ if(((/^http:\/\/g\.e-hentai\.org\//.test(href)) || (/^http:\/\/exhentai\.org\//.
     if(imgkey == '') { console.log('Cannot find the first imgkey.') }
     if((page_url == '') || (imgkey == '')) { throw 'exit' }
 
+    // g: showkey; s: showkey
     var showkey = ''
     if(typeof GM_xmlhttpRequest != 'undefined') {
         var xhr = GM_xmlhttpRequest({
