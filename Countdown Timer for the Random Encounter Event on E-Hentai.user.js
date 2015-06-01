@@ -102,6 +102,7 @@ if(/(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/') && !/\/palette
             var ss = Math.floor(diff % 60) + ''
             ss = (ss.length >= 2 ? ss : '0' + ss)
             timer_box.textContent = mm + ':' + ss + ', re_cnt=' + get_cookie('re_cnt')
+            if((mm == '00') && /50|40|30|20|10|05/.test(ss)) { alert('Random Encounter') }
         }
         setTimeout(update_timer, 1000)
     }
