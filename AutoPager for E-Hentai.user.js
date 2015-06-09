@@ -134,7 +134,7 @@ if(((/^http:\/\/g\.e-hentai\.org\//.test(href)) || (/^http:\/\/exhentai\.org\//.
                     img.src = img_src
                     img.style.cssText = 'display: block; margin-left: auto; margin-right: auto'
                     img.width = wnd.innerWidth
-                    b.appendChild(doc.createTextNode('p. '+page))
+                    b.appendChild(doc.createTextNode('p. '+page+' / '+filecount))
                     b.appendChild(doc.createElement('BR'))
                     b.appendChild(img)
                     b.appendChild(doc.createElement('BR'))
@@ -163,7 +163,7 @@ if(((/^http:\/\/g\.e-hentai\.org\//.test(href)) || (/^http:\/\/exhentai\.org\//.
                     img.src = img_src
                     img.style.cssText = 'display: block; margin-left: auto; margin-right: auto'
                     img.width = wnd.innerWidth
-                    b.appendChild(doc.createTextNode('p. '+page))
+                    b.appendChild(doc.createTextNode('p. '+page+' / '+filecount))
                     b.appendChild(doc.createElement('BR'))
                     b.appendChild(img)
                     b.appendChild(doc.createElement('BR'))
