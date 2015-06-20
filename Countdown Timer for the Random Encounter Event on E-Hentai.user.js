@@ -10,8 +10,7 @@ var doc = wnd.document
 var loc = location
 var href = loc.href
 
-if(/(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/') && !/\/palette\.html?\b/.test(href) && !doc.getElementById('countdown_timer'))
-{
+if(/(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/') && !/\/palette\.html?\b/.test(href) && !doc.getElementById('countdown_timer')) {
     var get_cookie = function(k) {
         var cookies = doc.cookie.split('; ')
         for(var i=cookies.length-1; i>=0; i--) { if(new RegExp(k+'=').test(cookies[i])) { return unescape(cookies[i].substring(k.length+1)) } }
@@ -104,7 +103,19 @@ if(/(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/') && !/\/palette
             timer_box.textContent = mm + ':' + ss + ', re_cnt=' + get_cookie('re_cnt')
             try {
                 if(doc.getElementById('eventpane').getElementsByTagName('div')[1].getElementsByTagName('a')[0].textContent != 'HentaiVerse') {
-                    if((mm == '00') && /50|40|30|20|10|05/.test(ss)) { alert('Random Encounter') }
+                    if(mm == '00') {
+                        if(!document.getElementById('re_snd')) {
+                            var audio = new Audio('http://www.freesound.org/data/previews/234/234524_4019029-lq.mp3')
+                            audio.id = 're_snd'
+                            audio.volume = 0.1
+                            audio.loop = true
+                            audio.play()
+                        }
+                        alert('Random Encounter')
+                    }
+                    if(/50|40|30|20|10|05/.test(ss)) {
+                        alert('Random Encounter')
+                    }
                 }
             } catch(e) {}
         }
