@@ -113,6 +113,11 @@ if(/(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/') && !/\/palette
                         }
                         if(/50|40|30|20|10|05/.test(ss)) { alert('Random Encounter') }
                     }
+                    else {
+                        if(document.getElementById('re_snd')) {
+                            document.getElementById('re_snd').parentNode.removeChild(document.getElementById('re_snd'))
+                        }
+                    }
                 } catch(e) {}
             }
         }
