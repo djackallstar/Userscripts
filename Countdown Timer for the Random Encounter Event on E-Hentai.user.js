@@ -105,11 +105,12 @@ if(/(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/') && !/\/palette
                 try {
                     if(doc.getElementById('eventpane').getElementsByTagName('div')[1].getElementsByTagName('a')[0].textContent != 'HentaiVerse') {
                         if(!document.getElementById('re_snd')) {
-                            var audio = new Audio('http://www.freesound.org/data/previews/234/234524_4019029-lq.mp3')
+                            var audio = new Audio('http://www.freesound.org/data/previews/238/238995_71257-lq.mp3')
                             audio.id = 're_snd'
                             audio.volume = 0.1
                             audio.loop = true
                             audio.play()
+                            document.body.appendChild(audio)
                         }
                         if(/50|40|30|20|10|05/.test(ss)) { alert('Random Encounter') }
                     }
