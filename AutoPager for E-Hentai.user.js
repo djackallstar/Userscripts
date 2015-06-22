@@ -31,7 +31,7 @@ if(((/^http:\/\/g\.e-hentai\.org\//.test(href)) || (/^http:\/\/exhentai\.org\//.
         var m = /\/s\/([^\/]+)\/([^\/]+)-([0-9]+)/.exec(href)
         if(m == null) { console.log('Invalid image page.'); throw 'exit' }
         var imgkey = m[1], gid = m[2], page = m[3]
-        if(imgkey.length > 10) { imgkey = imgkey.substring(0, 10) }
+        //if(imgkey.length > 10) { imgkey = imgkey.substring(0, 10) }
         if(typeof GM_xmlhttpRequest != 'undefined') {
             var xhr = GM_xmlhttpRequest({
                 method: 'POST',
@@ -82,11 +82,12 @@ if(((/^http:\/\/g\.e-hentai\.org\//.test(href)) || (/^http:\/\/exhentai\.org\//.
         console.log('page = ' + page)
 
         var lnks = $$('A[href*="/s/"]')
+        var url_pattern = new RegExp('/s/[^/]+/'+gid+'-'+page+'$')
         for(var i=lnks.length-1; i>=0; i--) {
-            if(new RegExp('/s/[^/]+/'+gid+'-'+page+'$').test(lnks[i].href)) {
+            if(url_pattern.test(lnks[i].href)) {
                 page_url = lnks[i].href
                 imgkey = /\/s\/([^\/]+)/.exec(lnks[i].href)[1]
-                if(imgkey.length > 10) { imgkey = imgkey.substring(0, 10) }
+                //if(imgkey.length > 10) { imgkey = imgkey.substring(0, 10) }
                 break
             }
         }
