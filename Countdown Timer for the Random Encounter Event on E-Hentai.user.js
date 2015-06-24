@@ -84,14 +84,19 @@ if(/(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/') && !/\/palette
     var update_timer = function() {
         if(href == 'http://e-hentai.org/') {
             var da = new Date()
-            if((da.getUTCHours()==0) && (da.getUTCMinutes()==0) && (da.getUTCSeconds()<=3)) { setTimeout(function() {loc.reload()}, 3000) }
+            if((da.getUTCHours()==0) && (da.getUTCMinutes()==0) && (da.getUTCSeconds()<=3)) {
+                if(!/^Your IP.*banned/i.test(doc.body.textContent)) {
+                    setTimeout(function() {loc.reload()}, 3000)
+                }
+            }
         }
         var now = Math.floor(new Date().getTime()/1000)
         var diff = parseInt(get_cookie('event')) + 1800 - now
         if(diff <= 0) {
             timer_box.textContent = 'Ready! re_cnt=' + get_cookie('re_cnt')
             if(href == 'http://e-hentai.org/') {
-                if(/\bfailover\b/i.test(doc.documentElement.innerHTML)) { setTimeout(function() {loc.reload()}, 10000) }
+                if(/^Your IP.*banned/i.test(doc.body.textContent)) {}
+                else if(/\bfailover\b/i.test(doc.documentElement.innerHTML)) { setTimeout(function() {loc.reload()}, 60000) }
                 else { loc.reload() }
                 return
             }
