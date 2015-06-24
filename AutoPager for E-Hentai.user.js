@@ -14,6 +14,11 @@ var href = loc.href
 var $  = function(e, css) { if(!css) { css=e; e=doc }; return e.querySelector(css) }
 var $$ = function(e, css) { if(!css) { css=e; e=doc }; return e.querySelectorAll(css) }
 
+/*** Settings ***/
+var freq = 3000
+
+/*** End of Settings ***/
+
 if(((/^http:\/\/g\.e-hentai\.org\//.test(href)) || (/^http:\/\/exhentai\.org\//.test(href))) && (/\/[gs]\//.test(href))) {
     var api_url = ''
     if(/^http:\/\/g\.e-hentai\.org\//.test(href)) { api_url = 'http://g.e-hentai.org/api.php' }
@@ -145,7 +150,7 @@ if(((/^http:\/\/g\.e-hentai\.org\//.test(href)) || (/^http:\/\/exhentai\.org\//.
                     if(m == null) { console.log('An error happened when parsing p. ' + page); return }
                     imgkey = m[1]
                     page = parseInt(m[2])
-                    setTimeout(append_img, 2000)
+                    setTimeout(append_img, freq)
                 }
             })
         }
