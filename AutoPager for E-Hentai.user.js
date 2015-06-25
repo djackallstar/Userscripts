@@ -16,7 +16,7 @@ var $$ = function(e, css) { if(!css) { css=e; e=doc }; return e.querySelectorAll
 
 /*** Settings ***/
 
-var check_freq = [3, 5] // min seconds ~ max seconds
+var freq = [3, 5] // min seconds ~ max seconds
 
 /*** End of Settings ***/
 
@@ -123,6 +123,12 @@ if(((/^http:\/\/g\.e-hentai\.org\//.test(href)) || (/^http:\/\/exhentai\.org\//.
     console.log('showkey = ' + showkey)
     if(showkey == '') { console.log('Cannot find the first showkey.'); throw 'exit' }
 
+    var get_rand = function(range) {
+        var min = range[0] * 1000
+        var max = range[1] * 1000
+        return Math.round(Math.random() * (max - min + 1)) + min
+    }
+
     var b = doc.body
     var append_img = function() {
         if(typeof GM_xmlhttpRequest != 'undefined') {
@@ -151,10 +157,7 @@ if(((/^http:\/\/g\.e-hentai\.org\//.test(href)) || (/^http:\/\/exhentai\.org\//.
                     if(m == null) { console.log('An error happened when parsing p. ' + page); return }
                     imgkey = m[1]
                     page = parseInt(m[2])
-                    var min = check_freq[0] * 1000
-                    var max = check_freq[1] * 1000
-                    var rand = Math.round(Math.random() * (max - min + 1)) + min
-                    setTimeout(append_img, rand)
+                    setTimeout(append_img, get_rand(freq))
                 }
             })
         }
@@ -183,10 +186,7 @@ if(((/^http:\/\/g\.e-hentai\.org\//.test(href)) || (/^http:\/\/exhentai\.org\//.
                     if(m == null) { console.log('An error happened when parsing p. ' + page); return }
                     imgkey = m[1]
                     page = parseInt(m[2])
-                    var min = check_freq[0] * 1000
-                    var max = check_freq[1] * 1000
-                    var rand = Math.round(Math.random() * (max - min + 1)) + min
-                    setTimeout(append_img, rand)
+                    setTimeout(append_img, get_rand(freq))
                 }
             }
             xhr.open('POST', api_url, true)
