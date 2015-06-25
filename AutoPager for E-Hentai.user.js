@@ -16,7 +16,7 @@ var $$ = function(e, css) { if(!css) { css=e; e=doc }; return e.querySelectorAll
 
 /*** Settings ***/
 
-var freq = [3, 5] // min seconds ~ max seconds
+var freq = [5, 7] // min seconds ~ max seconds
 
 /*** End of Settings ***/
 
@@ -124,9 +124,9 @@ if(((/^http:\/\/g\.e-hentai\.org\//.test(href)) || (/^http:\/\/exhentai\.org\//.
     if(showkey == '') { console.log('Cannot find the first showkey.'); throw 'exit' }
 
     var get_rand = function(range) {
-        var min = range[0] * 1000
-        var max = range[1] * 1000
-        return Math.round(Math.random() * (max - min + 1)) + min
+        var min = range[0]
+        var max = range[1]
+        return Math.floor(Math.random() * (max - min + 1)) + min
     }
 
     var b = doc.body
