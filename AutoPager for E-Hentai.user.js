@@ -157,7 +157,7 @@ if(((/^http:\/\/g\.e-hentai\.org\//.test(href)) || (/^http:\/\/exhentai\.org\//.
                     if(m == null) { console.log('An error happened when parsing p. ' + page); return }
                     imgkey = m[1]
                     page = parseInt(m[2])
-                    setTimeout(append_img, get_rand(freq))
+                    setTimeout(append_img, get_rand(freq)*1000)
                 }
             })
         }
@@ -186,7 +186,7 @@ if(((/^http:\/\/g\.e-hentai\.org\//.test(href)) || (/^http:\/\/exhentai\.org\//.
                     if(m == null) { console.log('An error happened when parsing p. ' + page); return }
                     imgkey = m[1]
                     page = parseInt(m[2])
-                    setTimeout(append_img, get_rand(freq))
+                    setTimeout(append_img, get_rand(freq)*1000)
                 }
             }
             xhr.open('POST', api_url, true)
