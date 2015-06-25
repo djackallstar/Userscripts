@@ -16,7 +16,7 @@ var $$ = function(e, css) { if(!css) { css=e; e=doc }; return e.querySelectorAll
 
 /*** Settings ***/
 
-var freq = 3000
+var check_freq = [3, 5] // min seconds ~ max seconds
 
 /*** End of Settings ***/
 
@@ -151,7 +151,10 @@ if(((/^http:\/\/g\.e-hentai\.org\//.test(href)) || (/^http:\/\/exhentai\.org\//.
                     if(m == null) { console.log('An error happened when parsing p. ' + page); return }
                     imgkey = m[1]
                     page = parseInt(m[2])
-                    setTimeout(append_img, freq)
+                    var min = check_freq[0] * 1000
+                    var max = check_freq[1] * 1000
+                    var rand = Math.round(Math.random() * (max - min + 1)) + min
+                    setTimeout(append_img, rand)
                 }
             })
         }
@@ -180,7 +183,10 @@ if(((/^http:\/\/g\.e-hentai\.org\//.test(href)) || (/^http:\/\/exhentai\.org\//.
                     if(m == null) { console.log('An error happened when parsing p. ' + page); return }
                     imgkey = m[1]
                     page = parseInt(m[2])
-                    setTimeout(append_img, freq)
+                    var min = check_freq[0] * 1000
+                    var max = check_freq[1] * 1000
+                    var rand = Math.round(Math.random() * (max - min + 1)) + min
+                    setTimeout(append_img, rand)
                 }
             }
             xhr.open('POST', api_url, true)
