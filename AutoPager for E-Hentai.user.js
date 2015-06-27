@@ -119,7 +119,7 @@ if(((/^http:\/\/g\.e-hentai\.org\//.test(href)) || (/^http:\/\/exhentai\.org\//.
                         xhr.open('GET', mpv_url, false)
                         xhr.send(null)
                     }
-                    var pa = xhr.responseText.match(/var imagelist *= *\[([^\]]+)\]/)[1].split('},').map(function(s) { return s + '}' })
+                    var pa = xhr.responseText.match(/var +imagelist *= *\[([^\]]+)\]/)[1].split('},').map(function(s) { return s + '}' })
                     imgkey = JSON.parse(pa[page-1]).k
                     page_url = loc.protocol + '//' + loc.hostname + '/s/' + imgkey + '/' + gid + '-' + page
                     break
