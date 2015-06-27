@@ -16,7 +16,7 @@ var $$ = function(e, css) { if(!css) { css=e; e=doc }; return e.querySelectorAll
 
 /*** Settings ***/
 
-var freq = [5, 7] // min seconds ~ max seconds
+var freq = [5, 10] // min seconds ~ max seconds
 
 /*** End of Settings ***/
 
@@ -99,6 +99,34 @@ if(((/^http:\/\/g\.e-hentai\.org\//.test(href)) || (/^http:\/\/exhentai\.org\//.
         }
     }
     else if(/\/s\//.test(href)) { page_url = href.replace(/\?.*/, '') }
+    if((page_url == '') || (imgkey == '')) {
+        if(/\/g\//.test(href)) {
+            var mpv_url = ''
+            var lnks = $$('A[href*="/mpv/"]')
+            var url_pattern = new RegExp('/mpv/'+gid+'/[^/]+/#page'+page+'$')
+            for(var i=lnks.length-1; i>=0; i--) {
+                if(url_pattern.test(lnks[i].href)) {
+                    mpv_url = lnks[i].href
+                    if(typeof GM_xmlhttpRequest != 'undefined') {
+                        var xhr = GM_xmlhttpRequest({
+                            method: 'GET',
+                            url: mpv_url,
+                            synchronous: true
+                        })
+                    }
+                    else {
+                        var xhr = new XMLHttpRequest()
+                        xhr.open('GET', mpv_url, false)
+                        xhr.send(null)
+                    }
+                    var pa = xhr.responseText.match(/var imagelist *= *\[([^\]]+)\]/)[1].split('},').map(function(s) { return s + '}' })
+                    imgkey = JSON.parse(pa[page-1]).k
+                    page_url = loc.protocol + '//' + loc.hostname + '/s/' + imgkey + '/' + gid + '-' + page
+                    break
+                }
+            }
+        }
+    }
     console.log('page_url = ' + page_url + ', imgkey = ' + imgkey)
     if(page_url == '') { console.log('Cannot find page_url.') }
     if(imgkey == '') { console.log('Cannot find the first imgkey.') }
