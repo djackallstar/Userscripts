@@ -197,7 +197,6 @@ if(((/^http:\/\/g\.e-hentai\.org\//.test(href)) || (/^http:\/\/exhentai\.org\//.
             xhr.onreadystatechange = function() {
                 if(xhr.readyState == 4 && xhr.status == 200) {
                     var res = JSON.parse(xhr.responseText)
-
                     var i3 = res['i3']
                     var img_src = /src=['"]([^'"]+)['"]/.exec(i3)[1].replace(/&amp;/g, '&')
 
