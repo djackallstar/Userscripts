@@ -175,7 +175,10 @@ if(((/^http:\/\/g\.e-hentai\.org\//.test(href)) || (/^http:\/\/exhentai\.org\//.
                     img.src = img_src
                     img.style.cssText = 'display: block; margin-left: auto; margin-right: auto'
                     img.width = wnd.innerWidth
-                    b.appendChild(doc.createTextNode('p. '+page+' / '+filecount))
+                    var a = doc.createElement('A')
+                    a.href = page_url.replace(/\/s\/.*/, '/s/' + imgkey + '/' + gid + '-' + page)
+                    a.text = 'p. ' + page + ' / ' + filecount
+                    b.appendChild(a)
                     b.appendChild(doc.createElement('BR'))
                     b.appendChild(img)
                     b.appendChild(doc.createElement('BR'))
