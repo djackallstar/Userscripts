@@ -112,7 +112,7 @@ if(!document.querySelector('*[name="ipb_login_submit"]') && /(\.e-hentai\.org\/)
                         if(!document.getElementById('re_snd')) {
                             var audio = new Audio('http://www.freesound.org/data/previews/234/234524_4019029-lq.mp3')
                             audio.id = 're_snd'
-                            audio.volume = 0.1
+                            audio.volume = 1
                             audio.loop = true
                             audio.play()
                             document.body.appendChild(audio)
