@@ -117,7 +117,7 @@ if(!document.querySelector('*[name="ipb_login_submit"]') && /(\.e-hentai\.org\/)
                             audio.play()
                             document.body.appendChild(audio)
                         }
-                        if(/50|40|30|20|10|05/.test(ss)) { alert('Random Encounter') }
+                        if(/50|40|30|20|10|05|00/.test(ss)) { alert('Random Encounter') }
                     }
                     else {
                         if(document.getElementById('re_snd')) {
