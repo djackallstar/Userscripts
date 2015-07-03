@@ -106,7 +106,7 @@ if(!document.querySelector('*[name="ipb_login_submit"]') && /(\.e-hentai\.org\/)
             var ss = Math.floor(diff % 60) + ''
             ss = (ss.length >= 2 ? ss : '0' + ss)
             timer_box.textContent = mm + ':' + ss + ', re_cnt=' + get_cookie('re_cnt')
-            if((mm == '00') || ((mm == 01) && (ss = 00))) {
+            if( (mm == '00') || ((mm == '01') && (ss == '00')) ) {
                 try {
                     if(doc.getElementById('eventpane').getElementsByTagName('div')[1].getElementsByTagName('a')[0].textContent != 'HentaiVerse') {
                         if(!document.getElementById('re_snd')) {
