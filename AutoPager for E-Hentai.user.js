@@ -29,7 +29,7 @@ if(((/^http:\/\/g\.e-hentai\.org\//.test(href)) || (/^http:\/\/exhentai\.org\//.
     // g: gid, gtoken; s: gid, gtoken, imgkey
     var gid = gtoken = ''
     if(/\/g\//.test(href)) {
-        if(!/\??\bp=/.test(href)) { loc.assign(href + '?p=0') }
+        //if(!/\??\bp=/.test(href)) { loc.assign(href + '?p=0') }
         var m = /\/g\/([^\/]+)\/([^\/]+)/.exec(href)
         if(m == null) { console.log('Invalid gallery.'); throw 'exit' }
         gid = m[1], gtoken = m[2]
