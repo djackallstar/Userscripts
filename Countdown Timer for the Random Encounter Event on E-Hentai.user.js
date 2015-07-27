@@ -133,8 +133,8 @@ if(!document.querySelector('*[name="ipb_login_submit"]') && /(\.e-hentai\.org\/)
 
     var eventpane = doc.getElementById('eventpane')
     if(eventpane != null) {
-        //var re_evt = eventpane.querySelector('a[onclick*="http://hentaiverse.org/"]')
-        var re_evt = eventpane.getElementsByTagName('div')[1].getElementsByTagName('a')[0]
+        var re_evt = eventpane.querySelector('a[onclick*="http://hentaiverse.org/"]')
+        //var re_evt = eventpane.getElementsByTagName('div')[1].getElementsByTagName('a')[0]
         if(re_evt) {
             var hv_lnk = ''
             if((/^http:\/\//.test(re_evt.href)) && (!/#/.test(re_evt.href))) { hv_lnk = re_evt.href }
