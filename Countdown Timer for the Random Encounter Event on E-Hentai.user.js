@@ -84,9 +84,9 @@ if(!document.querySelector('*[name="ipb_login_submit"]') && /(\.e-hentai\.org\/)
     var update_timer = function() {
         if(href == 'http://e-hentai.org/') {
             var da = new Date()
-            if((da.getUTCHours()==0) && (da.getUTCMinutes()==0) && (da.getUTCSeconds()<=3)) {
+            if((da.getUTCHours()==0) && (da.getUTCMinutes()==0) && (da.getUTCSeconds()<=10)) {
                 if(!/^Your IP.*banned/i.test(doc.body.textContent)) {
-                    setTimeout(function() {loc.reload()}, 3000)
+                    setTimeout(function() {loc.reload()}, 10000)
                 }
             }
         }
