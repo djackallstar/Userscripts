@@ -6,6 +6,12 @@
 // @include         http://exhentai.org/*
 // ==/UserScript==
 
+/*** Settings ***/
+
+var freq = [5, 10] // min seconds ~ max seconds
+
+/*** End of Settings ***/
+
 var wnd = window
 var doc = wnd.document
 var loc = location
@@ -13,12 +19,6 @@ var href = loc.href
 
 var $  = function(e, css) { if(!css) { css=e; e=doc }; return e.querySelector(css) }
 var $$ = function(e, css) { if(!css) { css=e; e=doc }; return e.querySelectorAll(css) }
-
-/*** Settings ***/
-
-var freq = [5, 10] // min seconds ~ max seconds
-
-/*** End of Settings ***/
 
 if(((/^http:\/\/g\.e-hentai\.org\//.test(href)) || (/^http:\/\/exhentai\.org\//.test(href))) && (/\/[gs]\//.test(href))) {
     var api_url = ''
