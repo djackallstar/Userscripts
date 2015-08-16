@@ -50,7 +50,8 @@ var init_timer = function(timer, thread_url) {
 var threads = doc.querySelectorAll('table.ipbtable>tbody>tr>td.row1>div:last-child')
 for(var i=threads.length-1; i>=0; i--) {
     var title = threads[i].textContent
-    if(/\[(auction|lottery|free)\b/i.test(title)) {
+    //if(/\[(auction|lottery|free)\b/i.test(title)) {
+    if(/\[auction\b/i.test(title)) {
         (function() {
             var thread_url = threads[i].querySelector('span>a:first-child').href
             var timer = doc.createElement('IFRAME')
