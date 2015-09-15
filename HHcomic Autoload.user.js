@@ -76,7 +76,7 @@ else if(/^https?:\/\/www\.hhcomic\.com\/xiee\//.test(href)) {
         }
         vlnks.sort(function(a, b) { return alphanum(a, b) })
 
-        var nextlink = vlnks[vlnks.indexOf(href.replace(/#/g, '')) + 1] || vlnks[0]
+        var nextlink = vlnks[vlnks.indexOf(href.replace(/#/g, '')) + 1] || vlnks[vlnks.length - 1]
         var nextlink_el = doc.createElement('A')
         nextlink_el.id = 'nextlink_el'
         nextlink_el.appendChild(doc.createTextNode('Next'))
@@ -84,6 +84,7 @@ else if(/^https?:\/\/www\.hhcomic\.com\/xiee\//.test(href)) {
         doc.body.appendChild(nextlink_el)
 
         addEventListener("keydown", function(evt) { if(evt.keyCode == 32) { evt.preventDefault(); loc.href = $('#nextlink_el') } }, false)
+        doc.title += ' / ' + $(div, '#content .vol a[href*="/xiee/"]').text
     }
 
     var home_url = 'http://www.hhcomic.com/comic/' + /.*?\/(\d+\/).*/.exec(href)[1]
