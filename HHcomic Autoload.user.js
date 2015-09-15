@@ -84,7 +84,7 @@ else if(/^https?:\/\/www\.hhcomic\.com\/xiee\//.test(href)) {
         doc.body.appendChild(nextlink_el)
 
         addEventListener("keydown", function(evt) { if(evt.keyCode == 32) { evt.preventDefault(); loc.href = $('#nextlink_el') } }, false)
-        doc.title += ' / ' + $(div, '#content .vol a[href*="/xiee/"]').text
+        doc.title = doc.title.replace(/ 汗汗漫画/g, '') + ' / ' + $(div, '#content .vol a[href*="/xiee/"]').text
     }
 
     var home_url = 'http://www.hhcomic.com/comic/' + /.*?\/(\d+\/).*/.exec(href)[1]
@@ -92,6 +92,7 @@ else if(/^https?:\/\/www\.hhcomic\.com\/xiee\//.test(href)) {
         GM_xmlhttpRequest({
             method: 'GET',
             url: home_url,
+            overrideMimeType: 'text/html; charset=gbk',
             onload: function(response) { create_nextlink_el(response.responseText) },
         })
     }
