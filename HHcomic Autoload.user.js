@@ -99,6 +99,7 @@ else if(/^https?:\/\/www\.hhcomic\.com\/xiee\//.test(href)) {
         var xhr = new XMLHttpRequest()
         xhr.onreadystatechange = function() { if(xhr.readyState == 4 && xhr.status == 200) { create_nextlink_el(xhr.responseText) } }
         xhr.open('GET', home_url, true)
+        xhr.overrideMimeType('text/html; charset=gbk')
         xhr.send(null)
     }
     else {
