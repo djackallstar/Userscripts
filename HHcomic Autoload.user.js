@@ -38,7 +38,7 @@ else if(/^https?:\/\/www\.hhcomic\.com\/xiee\//.test(href)) {
         doc.body.appendChild(d)
     }
 
-    if(href.indexOf('#') == -1) { loc.href += '#' }
+    //if(href.indexOf('#') == -1) { loc.href += '#' }
     var imgs = []
     if(typeof wnd.arrPicListUrl != 'undefined') { imgs = wnd.arrPicListUrl } else { alert('Error: Cannot find the image links.'); throw 'exit' }
     var server = wnd.ServerList[/.*\bs=(\d+)/.exec(href)[1]-1]
