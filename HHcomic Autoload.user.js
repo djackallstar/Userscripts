@@ -29,7 +29,7 @@ else if(/^https?:\/\/www\.hhcomic\.com\/xiee\//.test(href)) {
             img.onerror = function() { this.onerror = null; this.style.display = 'none' }
             img.src = imgs[i]
             img.style.cssText = 'display: block; margin-left: auto; margin-right: auto'
-            img.width = wnd.innerWidth * 0.70
+            img.width = wnd.innerWidth
             d.appendChild(doc.createTextNode('p. ' + i + ' / ' + len))
             d.appendChild(doc.createElement('BR'))
             d.appendChild(img)
