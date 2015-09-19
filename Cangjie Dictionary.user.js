@@ -61,8 +61,9 @@ addEventListener('keydown', function(evt) {
             if($('#cj_div')) { delete_element('#cj_div') }
             else if($('#ime_div')) {
                 delete_element('#ime_div')
-                var q = prompt('Input a Chinese character to look up its Cangjie code.').replace(/\s/g,'')
+                var q = prompt('Input a Chinese character to look up its Cangjie code.')
                 if(q) {
+                    q = q.replace(/\s/g,'')[0]
                     var b = get_big5(q[0])
                     if(b) { create_frm('http://input.foruto.com/cjdict/Images/CJZD_JPG/' + b + '.JPG', 'cj_div') }
                 }
