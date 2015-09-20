@@ -5,7 +5,7 @@
 // ==/UserScript==
 
 /*** Settings ***/
-var hotkey = 73
+var hotkey = 79
 var frm_width = 640
 var frm_height = 480
 var ime_url = 'http://www.pinyinput.com/'
