@@ -3,8 +3,8 @@
 // @description    Autoload all images on one page when reading manga on www.hhcomic.com
 // @grant          GM_xmlhttpRequest
 // @grant          unsafeWindow
+// @include        http://www.hhcomic.net/xiee/*/*
 // @include        http://www.hhcomic.com/xiee/*/*
-// @include        http://www.hhxiee.cc/*
 // ==/UserScript==
 
 var wnd = unsafeWindow || window
@@ -15,10 +15,7 @@ var href = loc.href
 var $  = function(e, css) { if(!css) { css=e; e=doc }; return e.querySelector(css) }
 var $$ = function(e, css) { if(!css) { css=e; e=doc }; return e.querySelectorAll(css) }
 
-if(/^https?:\/\/www\.hhxiee\.cc\//.test(href)) {
-    loc.assign(href.replace(/^https?:\/\/www\.hhxiee\.cc\//, 'http://www.hhcomic.com/'))
-}
-else if(/^https?:\/\/www\.hhcomic\.com\/xiee\//.test(href)) {
+if(/^https?:\/\/www\.hhcomic\.(net|com)\/xiee\//.test(href)) {
     var load_imgs = function() {
         doc.body.innerHTML = ''
         doc.body.style.backgroundColor = '#191B21'
@@ -84,7 +81,7 @@ else if(/^https?:\/\/www\.hhcomic\.com\/xiee\//.test(href)) {
         doc.body.appendChild(nextlink_el)
 
         addEventListener("keydown", function(evt) { if(evt.keyCode == 32) { evt.preventDefault(); loc.href = $('#nextlink_el') } }, false)
-        doc.title = doc.title.replace(/ 汗汗漫画/g, '') + ' / ' + $(div, '#content .vol a[href*="/xiee/"]').text
+        doc.title = doc.title.replace(/ ..漫画/g, '') + ' / ' + $(div, '#content .vol a[href*="/xiee/"]').text
     }
 
     var home_url = 'http://www.hhcomic.com/comic/' + /.*?\/(\d+\/).*/.exec(href)[1]
