@@ -84,7 +84,7 @@ if(/^https?:\/\/www\.hhcomic\.(net|com)\/xiee\//.test(href)) {
         doc.title = doc.title.replace(/ ..漫画/g, '') + ' / ' + $(div, '#content .vol a[href*="/xiee/"]').text
     }
 
-    var home_url = 'http://www.hhcomic.com/comic/' + /.*?\/(\d+\/).*/.exec(href)[1]
+    var home_url = 'http://www.hhcomic.net/comic/' + /.*?\/(\d+\/).*/.exec(href)[1]
     if(typeof GM_xmlhttpRequest != 'undefined') {
         GM_xmlhttpRequest({
             method: 'GET',
