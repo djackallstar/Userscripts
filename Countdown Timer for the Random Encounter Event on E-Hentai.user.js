@@ -92,6 +92,7 @@ if(!document.querySelector('*[name="ipb_login_submit"]') && /(\.e-hentai\.org\/)
         }
         var now = Math.floor(new Date().getTime()/1000)
         var diff = parseInt(get_cookie('event')) + 1800 - now
+        if(isNaN(diff)) { setTimeout(function() {loc.reload()}, 60000); return }
         if(diff <= 0) {
             timer_box.textContent = 'Ready! re_cnt=' + get_cookie('re_cnt')
             if(href == 'http://e-hentai.org/') {
