@@ -97,7 +97,7 @@ if(!document.querySelector('*[name="ipb_login_submit"]') && /(\.e-hentai\.org\/)
             timer_box.textContent = 'Ready! re_cnt=' + get_cookie('re_cnt')
             if(href == 'http://e-hentai.org/') {
                 if(/^Your IP.*banned/i.test(doc.body.textContent)) {}
-                else if(/\bfailover\b/i.test(doc.documentElement.innerHTML)) { setTimeout(function() {loc.reload()}, 60000) }
+                else if(/The site is currently in Read Only\/Failover Mode/i.test(doc.documentElement.innerHTML)) { setTimeout(function() {loc.reload()}, 60000) }
                 else { loc.reload() }
                 return
             }
