@@ -285,7 +285,7 @@ var goto_first_volume = function(comic_home_url, same_lnks, act_on_response)
 var nocss = function() {
     for(var i=css=0;css=document.styleSheets[i];++i) { css.disabled=true; }
     var all=document.getElementsByTagName('*')
-    for(var i=(all=document.getElementsByTagName('*')).length;i>0;i--) {
+    for(var i=all.length;i>0;i--) {
         var e=all[i-1]
         e.style.cssText=''
         if(e.nodeName=='STYLE'&&e.parentNode) {
@@ -293,11 +293,6 @@ var nocss = function() {
         }
         else {
             e.style=''
-            e.size=''
-            e.face=''
-            e.color=''
-            e.bgcolor=''
-            e.background=''
         }
     }
 }
