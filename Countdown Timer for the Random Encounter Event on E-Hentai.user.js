@@ -71,6 +71,7 @@ if(!document.querySelector('*[name="ipb_login_submit"]') && /(\.e-hentai\.org\/)
         }
     }
     addEventListener('keydown', function(evt) { if((evt.target.tagName!='INPUT') && (evt.target.tagName!='TEXTAREA') && (evt.keyCode == 76)) { toggle_re_lst() } }, false)
+    if(href == 'http://e-hentai.org/') { toggle_re_lst() }
 
     var newshead = doc.getElementById('newshead')
     if(newshead && /\/e-hentai\./.test(href)) {
