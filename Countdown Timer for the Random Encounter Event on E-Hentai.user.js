@@ -35,13 +35,8 @@ if(!document.querySelector('*[name="ipb_login_submit"]') && /(\.e-hentai\.org\/)
         re_lst_box.style.cssText = 'top:15px; right:0px; position:fixed; z-index:2147483647; background:rgba(0,255,0,1); color:#ff0000;'
         setTimeout(function() { re_lst_box.style.cssText = 'top:15px; right:0px; position:fixed; z-index:2147483647; background:rgba(0,255,0,0.2); color:#ff0000;' }, 3000)
         re_lst_box.innerHTML = '[List of RE Events Occurred Today]<BR>'
-        re_lst_box.onmouseover = function () {
-            this.style.cssText = 'top:15px; right:0px; position:fixed; z-index:2147483647; background:rgba(0,255,0,1); color:#ff0000;'
-        }
-        re_lst_box.onmouseout = function () {
-            this.style.cssText = 'top:15px; right:0px; position:fixed; z-index:2147483647; background:rgba(0,255,0,0.2); color:#ff0000;'
-        }
-
+        re_lst_box.onmouseover = function () { this.style.cssText = 'top:15px; right:0px; position:fixed; z-index:2147483647; background:rgba(0,255,0,1); color:#ff0000;' }
+        re_lst_box.onmouseout = function () { this.style.cssText = 'top:15px; right:0px; position:fixed; z-index:2147483647; background:rgba(0,255,0,0.2); color:#ff0000;' }
         var decode_hv_b64 = function(e) {
             var a = doc.createElement('A')
             a.href = 'http://hentaiverse.org/?s=Battle&ss=ba&encounter=' + e
@@ -160,7 +155,6 @@ if(!document.querySelector('*[name="ipb_login_submit"]') && /(\.e-hentai\.org\/)
                 if(re_evt.text != 'HentaiVerse') {
                     set_cookie('re_cnt', parseInt(get_cookie('re_cnt'))+1)
                     re_evt.text = 'HentaiVerse'
-                    eventpane.style.display = 'block'
                     if(doc.getElementById('re_lst_box')) { toggle_re_lst(); toggle_re_lst() }
                 }
             }, false)
