@@ -155,9 +155,9 @@ if(!document.querySelector('*[name="ipb_login_submit"]') && /(\.e-hentai\.org\/)
                 if(re_evt.text != 'HentaiVerse') {
                     set_cookie('re_cnt', parseInt(get_cookie('re_cnt'))+1)
                     re_evt.text = 'HentaiVerse'
-                    eventpant.style.display = 'block'
                     if(doc.getElementById('re_lst_box')) { toggle_re_lst(); toggle_re_lst() }
                 }
+                eventpane.style.display = 'block'
             }, false)
         }
         else if(/\bdawn\b/i.test(eventpane.textContent)) {
