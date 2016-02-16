@@ -163,6 +163,7 @@ if(!document.querySelector('*[name="ipb_login_submit"]') && /(\.e-hentai\.org\/)
         else if(/\bdawn\b/i.test(eventpane.textContent)) {
             set_cookie('re_cnt', 0)
             set_cookie('re_lst', '[]')
+            if(doc.getElementById('re_lst_box')) { toggle_re_lst(); toggle_re_lst() }
         }
     }
 }
