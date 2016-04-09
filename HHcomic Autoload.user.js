@@ -43,7 +43,7 @@ for(var i=imgs.length-1; i>=0; i--) { imgs[i] = server + imgs[i] }
 load_imgs()
 
 var create_nextlink_el = function(html) {
-    var div = document.createElement('div')
+    var div = doc.createElement('div')
     div.innerHTML = html
     var vlnks = ['javascript: location.href = "' + home_url + '"'].concat(Array.prototype.slice.call($$(div, '#content .vol a[href*="/xiee/"]')).map(function(a) { return a.href}))
     var alphanum = function(a, b) { // natural sorting algorithm from http://my.opera.com/GreyWyvern/blog/show.dml/1671288
