@@ -24,6 +24,7 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
         }
         done = true
     }
+    setTimeout(noimg, 500)
     if(/\/acg_donghua\//.test(href)) { setTimeout(noimg, 500) }
     else { if(doc.readyState == 'interactive') { noimg() } else { addEventListener('DOMContentLoaded', noimg, false) } }
 
