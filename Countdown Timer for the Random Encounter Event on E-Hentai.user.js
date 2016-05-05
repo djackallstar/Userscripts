@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name            Countdown Timer for the Random Encounter Event on E-Hentai
 // @description     Adds a countdown timer for the Random Encounter event on E-Hentai.org and its subdomains.
+// @grant           none
 // @include         http://e-hentai.org/*
 // @include         http://*.e-hentai.org/*
 // ==/UserScript==
