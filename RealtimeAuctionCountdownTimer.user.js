@@ -23,16 +23,18 @@ var init_timer = function(timer, thread_url) {
         if(xhr.readyState == 4 && xhr.status == 200) {
             var container = doc.implementation.createHTMLDocument().documentElement
             container.innerHTML = xhr.responseText
-            var timer_img = container.querySelector('IMG.linked-image[src^="http://e-hentai-countdown.darknessfall.com/"]')
+            //var timer_img = container.querySelector('IMG.linked-image[src^="http://e-hentai-countdown.darknessfall.com/"]')
+            var timer_img = container.querySelector('img[src*="countdown"]')
             var yy = mm = dd = hh = mi = ss = offset = ''
-            try { yy = timer_img.src.match(/year=([-0-9]*)/)[1] } catch(e) {}
-            try { mm = timer_img.src.match(/month=([-0-9]*)/)[1] } catch(e) {}
-            try { dd = timer_img.src.match(/day=([-0-9]*)/)[1] } catch(e) {}
-            try { hh = timer_img.src.match(/hour=([-0-9]*)/)[1] } catch(e) {}
-            try { mi = timer_img.src.match(/minute=([-0-9]*)/)[1] } catch(e) {}
-            try { ss = timer_img.src.match(/second=([-0-9]*)/)[1] } catch(e) {}
-            try { offset = timer_img.src.match(/offset=([-0-9]*)/)[1] } catch(e) {}
-            timer_url = 'http://e-hentai-countdown.darknessfall.com//EH-Cdwn.png?'
+            try { yy = timer_img.src.match(/year=([-0-9]*)/i)[1] } catch(e) {}
+            try { mm = timer_img.src.match(/month=([-0-9]*)/i)[1] } catch(e) {}
+            try { dd = timer_img.src.match(/day=([-0-9]*)/i)[1] } catch(e) {}
+            try { hh = timer_img.src.match(/hour=([-0-9]*)/i)[1] } catch(e) {}
+            try { mi = timer_img.src.match(/minute=([-0-9]*)/i)[1] } catch(e) {}
+            try { ss = timer_img.src.match(/second=([-0-9]*)/i)[1] } catch(e) {}
+            try { offset = timer_img.src.match(/offset=([-0-9]*)/i)[1] } catch(e) {}
+            //timer_url = 'http://e-hentai-countdown.darknessfall.com//EH-Cdwn.png?'
+            timer_url = 'http://167.114.68.34/countdown.png?'
             timer_url += '&year=' + yy
             timer_url += '&month=' + mm
             timer_url += '&day=' + dd
