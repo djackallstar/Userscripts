@@ -3,7 +3,7 @@
 // @description    Autoload all images on one page when reading manga on www.hhcomic.com
 // @grant          GM_xmlhttpRequest
 // @grant          unsafeWindow
-// @include        http://www.hanhan88.cc/xiee/*/*
+// @include        http://www.hanhan8.cc/xiee/*/*
 // ==/UserScript==
 
 var wnd = unsafeWindow || window
