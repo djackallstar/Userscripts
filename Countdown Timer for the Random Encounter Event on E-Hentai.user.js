@@ -19,8 +19,8 @@ if(!document.querySelector('*[name="ipb_login_submit"]') && /(\.e-hentai\.org\/)
             d.setTime(d.getTime() + (t * 24 * 60 * 60 * 1000))
             expires = '; expires=' + d.toGMTString()
         }
-        //doc.cookie = k + '=' + v + expires + '; domain=.' + /[^\.]+\.[^\.]+$/.exec(loc.hostname)[0] + '; path=/';
-        doc.cookie = k + '=' + v + expires + '; path=/';
+        //doc.cookie = k + '=' + escape(v) + expires + '; domain=.' + /[^\.]+\.[^\.]+$/.exec(loc.hostname)[0] + '; path=/';
+        doc.cookie = k + '=' + escape(v) + expires + '; path=/';
     }
     var get_cookie = function(k) {
         var n = k + '='
@@ -28,7 +28,7 @@ if(!document.querySelector('*[name="ipb_login_submit"]') && /(\.e-hentai\.org\/)
         for(var i=0; i<ca.length; i++) {
             var c = ca[i]
             while (c.charAt(0) == ' ') { c = c.substring(1) }
-            if (c.indexOf(n) == 0) { return c.substring(n.length, c.length) }
+            if (c.indexOf(n) == 0) { return unescape(c.substring(n.length, c.length)) }
         }
         return undefined
     }
