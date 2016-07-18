@@ -25,7 +25,7 @@ var load_imgs = function() {
         img.src = imgs[i]
         img.style.cssText = 'display: block; margin-left: auto; margin-right: auto'
         img.width = wnd.innerWidth
-        if(i==len) { img.addEventListener('click', function() { $('#nextlink_el').click() }) }
+        if(i==len-1) { img.addEventListener('click', function() { $('#nextlink_el').click() }) }
         d.appendChild(doc.createTextNode('p. ' + i + ' / ' + len))
         d.appendChild(doc.createElement('BR'))
         d.appendChild(img)
