@@ -222,7 +222,7 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
                 } )(i)
             }
             var kubo = doc.createElement('a')
-            kubo.href = 'http://www.123kubo.com/index.php?s=Vod-innersearch-q-'+encodeURIComponent(wnd.anim_name)+'-order--page-1'
+            kubo.href = 'http://www.123kubo.com/index.php?s=Vod-innersearch-q-'+encodeURIComponent(doc.title.match(/(.*)-.*-.*/)[1])+'-order--page-1'
             kubo.text = 'kubo'
             doc.querySelector('.ani-player').appendChild(kubo)
         }
