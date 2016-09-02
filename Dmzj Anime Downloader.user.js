@@ -221,6 +221,10 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
                     cites[i].addEventListener('mouseover', handler, false)
                 } )(i)
             }
+            var kubo = doc.createElement('a')
+            kubo.href = 'http://www.123kubo.com/index.php?s=Vod-innersearch-q-'+encodeURIComponent(wnd.anim_name)+'-order--page-1'
+            kubo.text = 'kubo'
+            doc.querySelector('.ani-player').appendChild(kubo)
         }
         if((doc.readyState == 'interactive') || (doc.readyState == 'complete')) { parse_dmzj() } else { addEventListener('DOMContentLoaded', parse_dmzj, false) }
     }
