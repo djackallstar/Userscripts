@@ -1,8 +1,9 @@
 // ==UserScript==
-// @name           Dmzj Anime Downloader
-// @description    Get anime download links from donghua.dmzj.com.
-// @include        http://donghua.dmzj.com/*
-// @grant          GM_log
+// @name        Dmzj Anime Downloader
+// @description Get anime download links from donghua.dmzj.com.
+// @include     http://donghua.dmzj.com/*
+// @include     /http://.*\.flvapi\.com/video\.php\?url=.*/
+// @grant       GM_setClipboard
 // ==/UserScript==
 
 var wnd = window
@@ -55,7 +56,19 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
 
                         // http://donghua.dmzj.com/js/donghua_play.js
                         var vid_url = '', parse_service = ''
-                        if(site_name == 'letv') {
+                        if(site_name == '56') {
+                            vid_url = 'http://player.56.com/v_' + vid + '.swf'
+                            parse_service = 'flvxz'
+                        }
+                        else if(site_name == 'cntv') {
+                            vid_url = 'http://player.cntv.cn/standard/cntvOutSidePlayer.swf?videoId=VIDE100165778382&videoCenterId=' + vid
+                            parse_service = 'flvxz'
+                        }
+                        else if(site_name == 'ku6') {
+                            vid_url = 'http://player.ku6.com/refer/' + vid + '/v.swf'
+                            parse_service = 'flvxz'
+                        }
+                        else if(site_name == 'letv') {
                             vid_url = 'http://www.letv.com/ptv/vplay/' + vid + '.html'
                             parse_service = 'flvxz'
                         }
@@ -64,36 +77,21 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
                             vid_url = 'http://yuntv.letv.com/bcloud.swf?uu=' + uu + '&vu=' + vid + '&auto_play=1&gpcflag=1&allowFullScreen=true&quality=high&allowScriptAccess=always&type=application/x-shockwave-flash';
                             parse_service = 'flvxz'
                         }
-                        else if(site_name == 'tudou' || site_name == 'tudou2') {
-                            if(/^\d+$/.test(vid)) {
-                                //vid_url = 'http://js.tudouui.com/bin/lingtong/PortalPlayer_53.swf?iid=' + vid
-                                vid_url = 'http://tudou.com/v/' + vid
-                            }
-                            else {
-                                vid_url = 'http://www.tudou.com/programs/view/' + vid
-                            }
+                        else if(site_name == 'pptv') {
+                            vid_url = 'http://v.pptv.com/show/' + vid + '.html'
                             parse_service = 'flvxz'
-
-                            // For future use:
-                            // http://www.gy456.com/js/player/gy007/ckplayer.swf?f=http://www.gy456.com/js/player/api/api.php?url=132338889_tudou
-                            // http://www.gy456.com/js/player/api/api.php?url=132338889_tudou
-                        }
-                        else if(site_name == 'weiyun') {
-                            if(!/\.mp4$/.test(vid)) { vid = vid + '.mp4' }
-                            vid_url = 'http://donghuaget.duapp.com/weiyun/' + vid
-                            parse_service = 'none'
                         }
                         else if(site_name == 'qingkong') {
                             if(!/\.mp4$/.test(vid)) { vid = vid + '.mp4' }
                             vid_url = 'http://v.qingkong.net/bp/a.php/' + vid
                             parse_service = 'none'
                         }
-                        else if(site_name == 'qq' || site_name == 'qq2') {
-                            vid_url = 'http://cache.tv.qq.com/qqplayerout.swf?vid=' + vid
+                        else if(site_name == 'qiyi') {
+                            vid_url = 'http://www.iqiyi.com/player/20130129155059/SharePlayer.swf?vid=' + vid
                             parse_service = 'flvxz'
                         }
-                        else if(site_name == 'youku') {
-                            vid_url = 'http://v.youku.com/v_show/id_' + vid
+                        else if(site_name == 'qq' || site_name == 'qq2') {
+                            vid_url = 'http://cache.tv.qq.com/qqplayerout.swf?vid=' + vid
                             parse_service = 'flvxz'
                         }
                         else if(site_name == 'sina') {
@@ -106,28 +104,51 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
                             else { vid_url = vid }
                             parse_service = 'flvxz'
                         }
-                        else if(site_name == 'cntv') {
-                            vid_url = 'http://player.cntv.cn/standard/cntvOutSidePlayer.swf?videoId=VIDE100165778382&videoCenterId=' + vid
-                            parse_service = 'flvxz'
+                        else if(site_name == 'tudou' || site_name == 'tudou2') {
+                            if(/^\d+$/.test(vid)) {
+                                vid_url = 'http://www.tudou.com/playlist/playQuicklist.do?iid=' + vid
+                                //vid_url = 'http://js.tudouui.com/bin/lingtong/PortalPlayer_53.swf?iid=' + vid
+                                //vid_url = 'http://tudou.com/v/' + vid
+                            }
+                            else {
+                                vid_url = 'http://www.tudou.com/programs/view/' + vid
+                            }
+                            parse_service = 'flvapi'
+
+                            // For future use:
+                            // http://www.gy456.com/js/player/gy007/ckplayer.swf?f=http://www.gy456.com/js/player/api/api.php?url=132338889_tudou
+                            // http://www.gy456.com/js/player/api/api.php?url=132338889_tudou
                         }
-                        else if(site_name == '56') {
-                            vid_url = 'http://player.56.com/v_' + vid + '.swf'
-                            parse_service = 'flvxz'
+                        else if(site_name == 'weiyun') {
+                            if(!/\.mp4$/.test(vid)) { vid = vid + '.mp4' }
+                            vid_url = 'http://donghuaget.duapp.com/weiyun/' + vid
+                            parse_service = 'none'
                         }
-                        else if(site_name == 'pptv') {
-                            vid_url = 'http://v.pptv.com/show/' + vid + '.html'
-                            parse_service = 'flvxz'
-                        }
-                        else if(site_name == 'ku6') {
-                            vid_url = 'http://player.ku6.com/refer/' + vid + '/v.swf'
-                            parse_service = 'flvxz'
-                        }
-                        else if(site_name == 'qiyi') {
-                            vid_url = 'http://www.iqiyi.com/player/20130129155059/SharePlayer.swf?vid=' + vid
-                            parse_service = 'flvxz'
+                        else if(site_name == 'youku') {
+                            vid_url = 'http://v.youku.com/v_show/id_' + vid
+                            if(!/\.html$/.test(vid_url)) { vid_url = vid_url + '.html' }
+                            parse_service = 'flvapi'
                         }
                         else if(site_name == 'other') {
                             var p, m2
+                            // 56
+                            p = m2 = ''
+                            if(vid_url == '') {
+                                if(/\bplayer\.56\.com\b/.test(vid)) {
+                                    vid_url = vid
+                                    parse_service = 'flvxz'
+                                }
+                            }
+                            // b9dm
+                            p = m2 = ''
+                            if(vid_url == '') {
+                                p = /http:\/\/swf\.b9dm\.com\/[^'"]*?file=([^'"]+)/g
+                                m2 = p.exec(vid)
+                                if(m2 != null) {
+                                    vid_url = m2[1]
+                                    parse_service = 'none'
+                                }
+                            }
                             // letv
                             p = m2 = ''
                             if(vid_url == '') {
@@ -154,24 +175,6 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
                                     parse_service = 'flvxz'
                                 }
                             }
-                            // 56
-                            p = m2 = ''
-                            if(vid_url == '') {
-                                if(/\bplayer\.56\.com\b/.test(vid)) {
-                                    vid_url = vid
-                                    parse_service = 'flvxz'
-                                }
-                            }
-                            // b9dm
-                            p = m2 = ''
-                            if(vid_url == '') {
-                                p = /http:\/\/swf\.b9dm\.com\/[^'"]*?file=([^'"]+)/g
-                                m2 = p.exec(vid)
-                                if(m2 != null) {
-                                    vid_url = m2[1]
-                                    parse_service = 'none'
-                                }
-                            }
                             // file=...
                             p = m2 = ''
                             if(vid_url == '') {
@@ -195,27 +198,30 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
                             return
                         }
 
+                        if(evt.type == 'mouseover') {
+                            console.log(vid_url + '\n' + parse_service)
+                            if(evt.shiftKey) { alert(vid_url + '\n' + parse_service) }
+                        }
+
                         if(evt.ctrlKey) { parse_service = 'flvcd' }
-                        else if(evt.shiftKey) { parse_service = 'flvxz' }
-                        else if(evt.altKey) { }
+                        else if(evt.shiftKey) { parse_service = 'flvapi' }
+                        else if(evt.altKey) { parse_service = 'flvxz' }
                         else if(evt.metaKey) { parse_service = 'none' }
 
                         var parse_url = ''
-                        if(parse_service == 'flvxz') {
-                            parse_url = 'http://www.flvxz.com/?url=' + encodeURIComponent(vid_url)
+                        if(parse_service == 'flvapi') {
+                            parse_url = atob('aHR0cDovLzU2OGJsYjEuZmx2YXBpLmNvbS92aWRlby5waHA/dXJsPWdxXw==') + btoa(vid_url) + atob('X2E=')
                         }
-                        else if(parse_service == 'flvcd') {
+                        if(parse_service == 'flvcd') {
                             parse_url = 'http://www.flvcd.com/parse.php?kw=' + encodeURIComponent(vid_url)
+                        }
+                        else if(parse_service == 'flvxz') {
+                            parse_url = 'http://www.flvxz.com/?url=' + encodeURIComponent(vid_url)
                         }
                         else if(parse_service == 'none') {
                             parse_url = vid_url
                         }
                         if(evt.type == 'click') { wnd.open(parse_url, '_blank') }
-                        else if(evt.type == 'mouseover') {
-                            console.log(vid_url)
-                            //if(typeof GM_log != 'undefined') { GM_log(vid_url) }
-                            if(evt.shiftKey) { alert(vid_url) }
-                        }
                     }
                     cites[i].addEventListener('click', handler, false)
                     cites[i].addEventListener('mouseover', handler, false)
@@ -228,4 +234,15 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
         }
         if((doc.readyState == 'interactive') || (doc.readyState == 'complete')) { parse_dmzj() } else { addEventListener('DOMContentLoaded', parse_dmzj, false) }
     }
+}
+else if(/\.flvapi\.com\//.test(href)) {
+    var split_files = Array.prototype.slice.call(doc.getElementsByTagName('file')).map(function(e) { return e.textContent })
+    if(split_files.length != 0) {
+        var vlnks = split_files.join('\n')
+        GM_setClipboard(vlnks)
+        var m3u = '#EXTM3U\n' + vlnks + '\n'
+        //loc.href = 'data:application/x-mpegurl;base64,' + btoa(m3u)
+        loc.href = 'data:audio/mpegurl;base64,' + btoa(m3u)
+        setTimeout(function() { wnd.top.close() }, 3000)
+    } else { console.log('Error: No download link found.') }
 }
