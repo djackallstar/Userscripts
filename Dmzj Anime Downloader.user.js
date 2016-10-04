@@ -201,7 +201,7 @@ if(/^http:\/\/donghua\.dmzj\.com\//.test(href)) {
 
                         if(evt.type == 'mouseover') {
                             console.log(vid_url + '\n' + parse_service)
-                            if(evt.shiftKey) { alert(vid_url + '\n' + parse_service) }
+                            if(evt.altKey) { alert(vid_url + '\n' + parse_service) }
                         }
 
                         if(evt.ctrlKey) { parse_service = 'flvcd' }
