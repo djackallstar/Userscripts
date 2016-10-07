@@ -11,7 +11,7 @@ var doc = wnd.document
 var loc = location
 var href = loc.href
 
-if(!document.querySelector('*[name="ipb_login_submit"]') && /(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/') && !/\/palette\.html?\b/.test(href) && !doc.getElementById('countdown_timer')) {
+if(!doc.querySelector('*[name="ipb_login_submit"]') && /(\.e-hentai\.org\/)|(^e-hentai.org\/)/.test(loc.hostname+'/') && !/\/palette\.html?\b/.test(href) && !doc.getElementById('countdown_timer')) {
     var set_cookie = function(k, v, t) {
         var expires = '; expires=Fri, 31 Dec 9999 23:59:59 GMT'
         if(t) {
@@ -121,19 +121,19 @@ if(!document.querySelector('*[name="ipb_login_submit"]') && /(\.e-hentai\.org\/)
             if( (mm == '00') || ((mm == '01') && (ss == '00')) ) {
                 try {
                     if(doc.getElementById('eventpane').getElementsByTagName('div')[1].getElementsByTagName('a')[0].textContent != 'HentaiVerse') {
-                        if(!document.getElementById('re_snd')) {
+                        if(!doc.getElementById('re_snd')) {
                             var audio = new Audio('http://www.freesound.org/data/previews/234/234524_4019029-lq.mp3')
                             audio.id = 're_snd'
                             audio.volume = 1
                             audio.loop = true
                             audio.play()
-                            document.body.appendChild(audio)
+                            doc.body.appendChild(audio)
                         }
                         if(/50|40|30|20|10|05|00/.test(ss)) { alert('Random Encounter') }
                     }
                     else {
-                        if(document.getElementById('re_snd')) {
-                            document.getElementById('re_snd').parentNode.removeChild(document.getElementById('re_snd'))
+                        if(doc.getElementById('re_snd')) {
+                            doc.getElementById('re_snd').parentNode.removeChild(doc.getElementById('re_snd'))
                         }
                     }
                 } catch(e) {}
