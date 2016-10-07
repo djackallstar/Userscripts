@@ -2,7 +2,6 @@
 // @name        18AV Tweaks
 // @updateURL   about:blank
 // @grant       GM_xmlhttpRequest
-// @grant       GM_openInTab
 // @grant       GM_setClipboard
 // @include     http://18av.mm-cg.com/*
 // ==/UserScript==
