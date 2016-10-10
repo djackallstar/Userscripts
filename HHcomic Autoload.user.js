@@ -79,7 +79,7 @@ var create_nextlink_el = function(html) {
     }
     vlnks.sort(function(a, b) { return alphanum(a, b) })
 
-    var nextlink = vlnks[vlnks.indexOf(href.replace(/#/g, '')) + 1] || vlnks[vlnks.length - 1]
+    var nextlink = vlnks[vlnks.indexOf(href.replace(/#/g, '')) + 1] || home_url
     var nextlink_el = doc.createElement('A')
     nextlink_el.id = 'nextlink_el'
     nextlink_el.appendChild(doc.createTextNode('Next'))
