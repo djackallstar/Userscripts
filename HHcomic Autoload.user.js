@@ -4,6 +4,7 @@
 // @grant          GM_xmlhttpRequest
 // @grant          unsafeWindow
 // @include        http://www.hhxiee.com/xiee/*/*
+// @include        http://www.huhudm.com/mh/hu*
 // ==/UserScript==
 
 var wnd = unsafeWindow || window
@@ -44,7 +45,13 @@ load_imgs()
 var create_nextlink_el = function(html) {
     var div = doc.createElement('div')
     div.innerHTML = html
-    var vlnks = ['javascript: location.href = "' + home_url + '"'].concat(Array.prototype.slice.call($$(div, '#content .vol a[href*="/xiee/"]')).map(function(a) { return a.href}))
+    var vlnks
+    if(/huhudm/.test(href)) {
+        vlnks = ['javascript: location.href = "' + home_url + '"'].concat(Array.prototype.slice.call($$(div, '#content .vol a[href^="/mh/hu"]')).map(function(a) { return a.href}))
+    }
+    else {
+        vlnks = ['javascript: location.href = "' + home_url + '"'].concat(Array.prototype.slice.call($$(div, '#content .vol a[href*="/xiee/"]')).map(function(a) { return a.href}))
+    }
     var alphanum = function(a, b) { // natural sorting algorithm from http://my.opera.com/GreyWyvern/blog/show.dml/1671288
         function chunkify(t) {
             var tz = [], x = 0, y = -1, n = 0, i, j
@@ -80,10 +87,21 @@ var create_nextlink_el = function(html) {
     doc.body.appendChild(nextlink_el)
 
     addEventListener("keydown", function(evt) { if(evt.keyCode == 32) { evt.preventDefault(); loc.href = $('#nextlink_el') } }, false)
-    doc.title = doc.title.replace(/ ..漫画/g, '') + ' / ' + $(div, '#content .vol a[href*="/xiee/"]').text
+    if(/huhudm/.test(href)) {
+        doc.title = doc.title.replace(/ ..漫画/g, '') + ' / ' + $(div, '#content .vol a[href^="/mh/hu"]').text
+    }
+    else {
+        doc.title = doc.title.replace(/ ..漫画/g, '') + ' / ' + $(div, '#content .vol a[href*="/xiee/"]').text
+    }
 }
 
-var home_url = loc.protocol + '//' + loc.hostname + '/comic/' + /.*?\/(\d+\/).*/.exec(href)[1]
+var home_url = ''
+if(/huhudm/.test(href)) {
+    home_url = loc.protocol + '//' + loc.hostname + '/manhua/hu' + /\/mh\/hu(\d+)\//.exec(href)[1] + '/'
+}
+else {
+    home_url = loc.protocol + '//' + loc.hostname + '/comic/' + /.*?\/(\d+\/).*/.exec(href)[1]
+}
 var homelink_el = doc.createElement('A')
 homelink_el.id = 'homelink_el'
 homelink_el.text = 'Home'
