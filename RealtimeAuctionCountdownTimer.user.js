@@ -1,7 +1,9 @@
 // ==UserScript==
 // @name            Realtime Auction Countdown Timer
 // @description     Show realtime countdown timers next to all auction threads in the WTS forum
-// @include         http://forums.e-hentai.org/index.php?showforum=77
+// @updateURL       about:blank
+// @grant           none
+// @include         /https?://forums\.e-hentai\.org/index\.php\?showforum=77\b/
 // ==/UserScript==
 
 /*** Settings ***/
@@ -23,25 +25,36 @@ var init_timer = function(timer, thread_url) {
         if(xhr.readyState == 4 && xhr.status == 200) {
             var container = doc.implementation.createHTMLDocument().documentElement
             container.innerHTML = xhr.responseText
-            //var timer_img = container.querySelector('IMG.linked-image[src^="http://e-hentai-countdown.darknessfall.com/"]')
-            var timer_img = container.querySelector('img[src*="countdown"]')
-            var yy = mm = dd = hh = mi = ss = offset = ''
-            try { yy = timer_img.src.match(/year=([-0-9]*)/i)[1] } catch(e) {}
-            try { mm = timer_img.src.match(/month=([-0-9]*)/i)[1] } catch(e) {}
-            try { dd = timer_img.src.match(/day=([-0-9]*)/i)[1] } catch(e) {}
-            try { hh = timer_img.src.match(/hour=([-0-9]*)/i)[1] } catch(e) {}
-            try { mi = timer_img.src.match(/minute=([-0-9]*)/i)[1] } catch(e) {}
-            try { ss = timer_img.src.match(/second=([-0-9]*)/i)[1] } catch(e) {}
-            try { offset = timer_img.src.match(/offset=([-0-9]*)/i)[1] } catch(e) {}
-            //timer_url = 'http://e-hentai-countdown.darknessfall.com//EH-Cdwn.png?'
-            timer_url = 'http://167.114.68.34/countdown.png?'
-            timer_url += '&year=' + yy
-            timer_url += '&month=' + mm
-            timer_url += '&day=' + dd
-            timer_url += '&hour=' + hh
-            timer_url += '&minute=' + mi
-            timer_url += '&second=' + ss
-            timer_url += '&offset=' + offset
+            var timer_img = container.querySelector('img.linked-image[src^="http://reasoningtheory.net/countdown.png?"]')
+            if(timer_img) {
+                timer_url = timer_img.src.replace(/([?&]?)title=[^&]*/i, '$1')
+            } else {
+                timer_img = container.querySelector('img.linked-image[src^="http://e-hentai-countdown.darknessfall.com/EH-Cdwn.png?"]')
+                if(timer_img) {
+                    timer_url = timer_img.src.replace(/([?&]?)auctionname=[^&]*/i, '$1').replace(/([?&]?)expire=[^&]*/i, '$1')
+                }
+                else {
+                    timer_img = container.querySelector('img[src*="countdown"]')
+                    if(timer_img) {
+                        var yy = mm = dd = hh = mi = ss = offset = ''
+                        try { yy = timer_img.src.match(/year=([-0-9]*)/i)[1] } catch(e) {}
+                        try { mm = timer_img.src.match(/month=([-0-9]*)/i)[1] } catch(e) {}
+                        try { dd = timer_img.src.match(/day=([-0-9]*)/i)[1] } catch(e) {}
+                        try { hh = timer_img.src.match(/hour=([-0-9]*)/i)[1] } catch(e) {}
+                        try { mi = timer_img.src.match(/minute=([-0-9]*)/i)[1] } catch(e) {}
+                        try { ss = timer_img.src.match(/second=([-0-9]*)/i)[1] } catch(e) {}
+                        try { offset = timer_img.src.match(/offset=([-0-9]*)/i)[1] } catch(e) {}
+                        timer_url = 'http://reasoningtheory.net/countdown.png?'
+                        timer_url += '&year=' + yy
+                        timer_url += '&month=' + mm
+                        timer_url += '&day=' + dd
+                        timer_url += '&hour=' + hh
+                        timer_url += '&minute=' + mi
+                        timer_url += '&second=' + ss
+                        timer_url += '&offset=' + offset
+                    }
+                }
+            }
             timer.src = timer_url
         }
     }
