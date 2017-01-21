@@ -2,8 +2,8 @@
 // @name            Countdown Timer for the Random Encounter Event on E-Hentai
 // @description     Adds a countdown timer for the Random Encounter event on E-Hentai.org and its subdomains.
 // @grant           none
-// @include         http://e-hentai.org/*
-// @include         http://*.e-hentai.org/*
+// @include         https://e-hentai.org/*
+// @include         https://*.e-hentai.org/*
 // ==/UserScript==
 
 var wnd = window
@@ -39,7 +39,7 @@ if(!doc.querySelector('*[name="ipb_login_submit"]') && /(\.e-hentai\.org\/)|(^e-
 
     var timer_box = doc.createElement('DIV')
     timer_box.id = 'countdown_timer'
-    timer_box.onclick = function() { if(/\bReady\b/i.test(this.textContent)) { wnd.open('http://e-hentai.org/', href=='http://e-hentai.org/'?'_self':'_blank') } }
+    timer_box.onclick = function() { if(/\bReady\b/i.test(this.textContent)) { wnd.open('https://e-hentai.org/news.php', href=='https://e-hentai.org/news.php'?'_self':'_blank') } }
 
     var toggle_re_lst = function() {
         //alert(get_cookie('re_lst'))
@@ -81,7 +81,7 @@ if(!doc.querySelector('*[name="ipb_login_submit"]') && /(\.e-hentai\.org\/)|(^e-
         }
     }
     addEventListener('keydown', function(evt) { if((evt.target.tagName!='INPUT') && (evt.target.tagName!='TEXTAREA') && (evt.keyCode == 76)) { toggle_re_lst() } }, false)
-    if(href == 'http://e-hentai.org/') { toggle_re_lst() }
+    if(href == 'https://e-hentai.org/news.php') { toggle_re_lst() }
 
     var newshead = doc.getElementById('newshead')
     if(newshead && /\/e-hentai\./.test(href)) {
@@ -93,7 +93,7 @@ if(!doc.querySelector('*[name="ipb_login_submit"]') && /(\.e-hentai\.org\/)|(^e-
     }
 
     var update_timer = function() {
-        if(href == 'http://e-hentai.org/') {
+        if(href == 'https://e-hentai.org/news.php') {
             var da = new Date()
             if((da.getUTCHours()==0) && (da.getUTCMinutes()==0) && (da.getUTCSeconds()<=10)) {
                 if(!/^Your IP.*banned/i.test(doc.body.textContent)) {
@@ -106,7 +106,7 @@ if(!doc.querySelector('*[name="ipb_login_submit"]') && /(\.e-hentai\.org\/)|(^e-
         if(isNaN(diff)) { setTimeout(function() {loc.reload()}, 60000); return }
         if(diff <= 0) {
             timer_box.textContent = 'Ready! re_cnt=' + get_cookie('re_cnt')
-            if(href == 'http://e-hentai.org/') {
+            if(href == 'https://e-hentai.org/news.php') {
                 if(/^Your IP.*banned/i.test(doc.body.textContent)) {}
                 else if(/The site is currently in Read Only\/Failover Mode/i.test(doc.documentElement.innerHTML)) { setTimeout(function() {loc.reload()}, 60000) }
                 else { loc.reload() }
