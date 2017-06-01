@@ -13,6 +13,7 @@ var se = [ // [se_name, se_url]
     ['d1-dm', 'trad', 'http://www.d1-dm.com/feeds/posts/summary?q=%s'],
     ['ja', 'trad', 'http://jac-animation-net.blogspot.tw/search?q=%s'],
     ['kubo', 'trad', 'http://www.123kubo.com/index.php?s=Vod-innersearch-q-%s-order--page-1'],
+    ['google', 'simp', 'http://www.google.com/search?q=%s'],
 ]
 
 /*** End of Settings ***/
