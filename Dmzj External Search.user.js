@@ -15,6 +15,7 @@ var se = [ // [se_name, se_url]
     ['ja', 'trad', 'http://jac-animation-net.blogspot.tw/search?q=%s'],
     ['kubo', 'trad', 'http://www.123kubo.com/index.php?s=Vod-innersearch-q-%s-order--page-1'],
     ['google', 'simp', 'http://www.google.com/search?q=%s'],
+    ['eyny', 'trad', 'http://video.eyny.com/index.php?mod=search&type=&date=&orderby=&cid=0&srchtxt=%s'],
 ]
 
 /*** End of Settings ***/
