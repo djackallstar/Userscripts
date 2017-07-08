@@ -13,7 +13,7 @@ var se = [ // [se_name, se_url]
     ['2dgate (92148)', 'trad', 'http://2dgate.drama.cool/feeds/posts/default?q=%s'],
     ['d1-dm', 'trad', 'http://www.d1-dm.com/feeds/posts/summary?q=%s'],
     ['ja', 'trad', 'http://jac-animation-net.blogspot.tw/search?q=%s'],
-    ['kubo', 'trad', 'http://www.123kubo.com/index.php?s=Vod-innersearch-q-%s-order--page-1'],
+    ['kubo', 'trad', 'http://www.99kubo.com/index.php?s=Vod-innersearch-q-%s-order--page-1'],
     ['google', 'simp', 'http://www.google.com/search?q=%s'],
     ['dhr', 'trad', 'https://www.google.com/search?q=%s%20+site:dhr.moe'],
     ['eyny', 'trad', 'http://video.eyny.com/index.php?mod=search&type=&date=&orderby=&cid=0&srchtxt=%s'],
