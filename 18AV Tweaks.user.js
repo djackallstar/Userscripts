@@ -66,12 +66,27 @@ if(/\/(18av|av_Broadcast)\//i.test(href)) {
                         //div = res.responseXML
                         //div = new DOMParser().parseFromString(res.responseText, 'text/xml')
                         if(/(youjizz|jizzhut)\.com/.test(url)) {
-                            try{ vlnk = div.querySelector('#yj-video').querySelector('source').src }
+                            try {
+                                vlnk = res.responseText.match(/"filename":"(.*?)"/)[1].replace(/\\/g, '').replace(/^\/\//, 'https://')
+                                //vlnk = 'https:' + div.encodings[0].filename
+                                //vlnk = div.querySelector('video[id^="yj-video"]').src
+                            }
                             catch(e) {
                                 alert(e)
-                                vlnk = res.responseText.match(/newLink\.setAttribute\(['"]href['"],['"]([^'"]*)['"]\)/)[1]
+                                return
                             }
-                            if(/^\/\//i.test(vlnk)) { vlnk = vlnk.replace(/^\/\//, 'https://') }
+                            //try{ vlnk = div.querySelector('#yj-video').querySelector('source').src }
+                            //catch(e) {
+                                //alert(e)
+                                //try {
+                                    //vlnk = res.responseText.match(/newLink\.setAttribute\(['"]href['"],['"]([^'"]*)['"]\)/)[1]
+                                //}
+                                //catch(e2) {
+                                    //alert(e2)
+                                    //return
+                                //}
+                            //}
+                            //if(/^\/\//i.test(vlnk)) { vlnk = vlnk.replace(/^\/\//, 'https://') }
                         }
                         else if(/vshare\.io/.test(url)) {
                             try{ vlnk = div.querySelector('#my-video').querySelector('source').src }
