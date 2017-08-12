@@ -92,7 +92,12 @@ if(/\/(18av|av_Broadcast)\//i.test(href)) {
                             try{ vlnk = div.querySelector('#my-video').querySelector('source').src }
                             catch(e) {
                                 alert(e)
-                                vlnk = res.responseText.match(/<source +src=['"]([^'"]*?)['"]/)[1]
+                                try {
+                                    vlnk = res.responseText.match(/<source +src=['"]([^'"]*?)['"]/)[1]
+                                } catch(e2) {
+                                    alert(e2)
+                                    alert('Copy-n-Paste the URL to watch the video:\n' + url)
+                                }
                             }
                             if(/^\/\//i.test(vlnk)) { vlnk = vlnk.replace(/^\/\//, 'https://') }
                         }
