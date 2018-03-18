@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name           Cangjie Dictionary
-// @description    Show the Cangjie code of the selected traditional Chinese character.
+// @updateURL      about:blank
+// @grant          none
 // @include        *
 // ==/UserScript==
 
@@ -8,7 +9,7 @@
 var hotkey = 73
 var frm_width = 640
 var frm_height = 480
-var ime_url = 'http://www.pinyinput.com/'
+var ime_url = 'http://www.cangjieinput.com/'
 
 /*** End of Settings ***/
 
@@ -61,14 +62,21 @@ addEventListener('keydown', function(evt) {
             if($('#cj_div')) { delete_element('#cj_div') }
             else if($('#ime_div')) {
                 delete_element('#ime_div')
-                var q = prompt('Input a Chinese character to look up its Cangjie code.')
+            }
+            else {
+                var q = prompt('Input a Chinese character to look it up; input "ime" to open an ime.')
                 if(q) {
-                    q = q.replace(/\s/g,'')[0]
-                    var b = get_big5(q[0])
-                    if(b) { create_frm('http://input.foruto.com/cjdict/Images/CJZD_JPG/' + b + '.JPG', 'cj_div') }
+                    q = q.replace(/\s/g,'')
+                    if(q.toLowerCase()=='ime') {
+                        create_frm(ime_url, 'ime_div')
+                    }
+                    else {
+                        q=q[0]
+                        var b = get_big5(q[0])
+                        if(b) { create_frm('http://input.foruto.com/cjdict/Images/CJZD_JPG/' + b + '.JPG', 'cj_div') }
+                    }
                 }
             }
-            else { create_frm(ime_url, 'ime_div') }
         }
     }
 }, false)
