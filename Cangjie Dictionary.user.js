@@ -71,7 +71,6 @@ addEventListener('keydown', function(evt) {
                         create_frm(ime_url, 'ime_div')
                     }
                     else {
-                        q=q[0]
                         var b = get_big5(q[0])
                         if(b) { create_frm('http://input.foruto.com/cjdict/Images/CJZD_JPG/' + b + '.JPG', 'cj_div') }
                     }
