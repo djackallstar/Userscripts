@@ -8,6 +8,7 @@
 /*** Settings ***/
 var se = [ // [se_name, se_url]
     ['myself', 'trad', 'https://www.google.com/search?q=%s%20site:myself-bbs.com'],
+    ['lovemoe', 'trad', 'https://www.google.com/search?q=%s%20site:www.lovemoe.net'],
     ['watchme', 'simp', 'http://watchme.asia/tw/search.html?keyword=%s'],
     ['ahsamtravelworld', 'trad', 'https://www.google.com/search?q=%s%20site:ahsamtravelworld.blogspot.tw'],
     ['2dgate (92148)', 'trad', 'http://2dgate.drama.cool/feeds/posts/default?q=%s'],
