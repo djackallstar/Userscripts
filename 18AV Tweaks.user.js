@@ -121,8 +121,12 @@ if(/\/(18av|av_Broadcast)\//i.test(href)) {
                         }
                         var m3u = '#EXTM3U\n'
                         m3u += vlnk + '\n'
-                        //loc.href = 'data:application/x-mpegurl;base64,' + btoa(m3u)
-                        loc.href = 'data:audio/mpegurl;base64,' + btoa(m3u)
+                        if(typeof InstallTrigger !== 'undefined') { // is Firefox
+                            loc.href = 'data:audio/mpegurl;base64,' + btoa(m3u)
+                        }
+                        else {
+                            loc.href = 'data:application/x-mpegurl;base64,' + btoa(m3u)
+                        }
                     },
                 })
             })
