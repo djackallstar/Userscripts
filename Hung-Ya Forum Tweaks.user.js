@@ -17,8 +17,8 @@ if(/^http:\/\/bbs\.bbs-tw\.com\//.test(href))
         if( (!doc.getElementById("BbsShow")) || (!doc.getElementById("BbsShowMenu")) ) { loc.assign(loc.href + "&_=" + +(new Date)) }
 
         // Remove scripts
-        //var scripts=doc.getElementsByTagName('script')
-        //for(var i=scripts.length-1; i>=0; i--) { try { scripts[i].parentNode.removeChild(scripts[i]) } catch(e) {} }
+        var scripts=doc.getElementsByTagName('script')
+        for(var i=scripts.length-1; i>=0; i--) { try { scripts[i].parentNode.removeChild(scripts[i]) } catch(e) {} }
 
         // Diable the <meta> refresh
         var no_refresh = function() { wnd.stop(); if( (!doc.getElementById("BbsShow")) || (!doc.getElementById("BbsShowMenu")) ) { loc.reload() } }
